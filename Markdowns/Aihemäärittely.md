@@ -4,4 +4,4 @@ KurssiKirjaajaKalenteri eli KKK on graafinen apuväline opiskelijalle käytyjen 
 
 KKK tukee kevyttä analyysiä käydyistä kursseista. KKK laskee kaikkien käytyjen kurssien keskiarvon, mediaanin, (jotain muuta?).  
 ## käyttäjien toiminnot
-
+Käyttäjä pystyy lisäämään KKK:hon kursseja, tarkastelemaan ja muokkaamaan niitä.
