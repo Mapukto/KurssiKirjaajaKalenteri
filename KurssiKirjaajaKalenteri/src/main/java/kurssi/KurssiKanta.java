@@ -27,6 +27,14 @@ class KurssiKanta {
         kurssiLista.add(kurssi);
     }
     
+    public void poistaKurssi(String nimi) {
+        for (Kurssi kurssiLista1 : kurssiLista) {
+            if (kurssiLista1.getNimi().equals(nimi)) {
+                kurssiLista.remove(kurssiLista1);
+            }
+        }
+    }
+    
     
     /*
      *  muokkaa listaa poistamalla vanhan ja lisäämällä uuden,

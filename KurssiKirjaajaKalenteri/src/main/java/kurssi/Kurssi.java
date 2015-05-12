@@ -11,4 +11,8 @@ public class Kurssi {
         this.nimi = nimi;
         this.suoritusPvm = pvm;
     }
+    
+    public String getNimi() {
+        return this.nimi;
+    }
 }
