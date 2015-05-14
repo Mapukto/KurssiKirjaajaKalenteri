@@ -1,5 +1,5 @@
 
-package laskin;
+package kkk.laskin;
 
 public class Laskin {
     

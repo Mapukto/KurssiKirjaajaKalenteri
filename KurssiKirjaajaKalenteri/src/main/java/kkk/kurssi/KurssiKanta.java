@@ -1,5 +1,5 @@
 
-package kurssi;
+package kkk.kurssi;
 
 import java.util.ArrayList;
 import java.util.List;

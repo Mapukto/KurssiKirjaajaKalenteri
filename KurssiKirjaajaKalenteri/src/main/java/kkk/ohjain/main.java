@@ -1,5 +1,5 @@
 
-package ohjain;
+package kkk.ohjain;
 
 
 public class main {

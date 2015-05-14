@@ -1,5 +1,5 @@
 
-package tiedostonhallinta;
+package kkk.tiedostonhallinta;
 
 public class Lukija {
     

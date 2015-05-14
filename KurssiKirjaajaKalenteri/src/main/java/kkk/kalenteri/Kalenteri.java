@@ -1,5 +1,5 @@
 
-package kalenteri;
+package kkk.kalenteri;
 
 public class Kalenteri {
     

@@ -1,5 +1,5 @@
 
-package kurssi;
+package kkk.kurssi;
 
 public class Kurssi {
     private int arvosana, suoritusPvm, nopat;
