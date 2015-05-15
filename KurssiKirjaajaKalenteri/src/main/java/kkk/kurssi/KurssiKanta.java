@@ -3,12 +3,28 @@ package kkk.kurssi;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+/**
+ *
+ * @author mopo
+ */
+
 class KurssiKanta {
 
-    private List<Kurssi> kurssiLista = new ArrayList<>();
-    private List<Kurssi> keskenOlevat = new ArrayList<>();
+    private List<Kurssi> kurssiLista;
+    private List<Kurssi> keskenOlevat;
+    
+    /**
+     *  luonnin yhteydessä luetaan tallennetut kurssit tiedostosta ja täytetään listat
+     *  
+     */
+    public KurssiKanta() {
+        
+    }
+    
 
-    /*
+    /**
      *  tarkastetaan, ettei samannimistä kurssia ole jo listassa.
      *  jos saman niminen löytyy, kurssi "muokataan", eli vanha poistetaan ja lisätään
      *  uusi listaan.
@@ -35,7 +51,7 @@ class KurssiKanta {
         }
     }
 
-    /*
+    /**
      *  muokkaa listaa poistamalla vanhan ja lisäämällä uuden,
      jottei duplikaatteja olisi.
      */

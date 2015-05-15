@@ -4,6 +4,11 @@ package kkk.ui;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ *
+ * @author mopo
+ */
+
 public class UI implements Runnable {
     JFrame frame;
     JPanel panel;

@@ -4,7 +4,10 @@ package kkk.ui;
 import java.awt.*;
 import javax.swing.*;
 
-
+/**
+ *
+ * @author mopo
+ */
 public class KalenteriUI extends JPanel {
 
     
@@ -27,7 +30,7 @@ public class KalenteriUI extends JPanel {
          JPanel paivaPanel = new JPanel();
          paivaPanel.setLayout(new GridLayout(0,6));
          
-         String[] viikonPvt = {"alkaen"," MA ", " TI ", " KE ", " TO ", " PE "};
+         String[] viikonPvt = {"alkaen","maanantai", "tiistai", "keskiviikko", "torstai", "perjantai"};
          
          for (int i = 0; i < 6; i++) {
             JPanel pva = new JPanel();
@@ -37,7 +40,7 @@ public class KalenteriUI extends JPanel {
             paivaPanel.add(pva);
         }
          
-        String[] ajat = {"8", "9", "10" ,"11", "12", "13", "14", "15", "16", "17", "18", "19"};
+        String[] ajat = {"9", "10" ,"11", "12", "13", "14", "15", "16", "17", "18"};
         int aikaIndex = 0;
         
         for (int i = 0; i < 60; i++) {
