@@ -10,29 +10,47 @@ import javax.swing.*;
  */
 
 public class UI implements Runnable {
-    JFrame frame;
-    JPanel panel;
 
+    JFrame frame;
+//    private JPanel panel;
+    private static Container c;
+
+    
+    /**
+     * luodaan frame ja etusivuksi kalenterinäkymä
+     */
     @Override
     public void run() {
         frame = new JFrame("KurssiKirjaajaKalenteri KKK");
         frame.setPreferredSize(new Dimension(500,500));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        luoKomponentit(frame.getContentPane());
+        c = frame.getContentPane();
+        
+        luoKalenteriNakyma();
         
         frame.pack();
         frame.setVisible(true);
     }
     
-    private void luoKomponentit(Container container) {
-        container.setLayout(new FlowLayout());
+    /**
+     * luo kalenterinäkymän
+     */
+    private void luoKalenteriNakyma() {
+        c.setLayout(new FlowLayout());
         
         KalenteriUI alkuruutu = new KalenteriUI();
         
-        container.add(alkuruutu);
+        c.add(alkuruutu);
     }
-
+    
+    /**
+     * luo kurssinäkymän
+     */
+    public static void luoKurssiNakyma() {
+        c.removeAll();
+        c.repaint();
+    }
 
 
 //    private Component napitUI() {

@@ -1,34 +1,37 @@
-package kkk.kurssi;
+package kkk.kurssikanta;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 /**
  *
  * @author mopo
  */
+public class KurssiKanta {
 
-class KurssiKanta {
+    private final List<Kurssi> kurssiLista;
+    private final List<Kurssi> keskenOlevat;
 
-    private List<Kurssi> kurssiLista;
-    private List<Kurssi> keskenOlevat;
-    
     /**
-     *  luonnin yhteydessä luetaan tallennetut kurssit tiedostosta ja täytetään listat
-     *  
+     * luonnin yhteydessä luetaan tallennetut kurssit tiedostosta ja täytetään
+     * listat
+     *
      */
     public KurssiKanta() {
-        
+        this.kurssiLista = new ArrayList<>();
+        this.keskenOlevat = new ArrayList<>();
+//        lataaKurssit();
     }
-    
+
+    private void lataaKurssit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
-     *  tarkastetaan, ettei samannimistä kurssia ole jo listassa.
-     *  jos saman niminen löytyy, kurssi "muokataan", eli vanha poistetaan ja lisätään
-     *  uusi listaan.
-     * 
+     * tarkastetaan, ettei samannimistä kurssia ole jo listassa. jos saman
+     * niminen löytyy, kurssi "muokataan", eli vanha poistetaan ja lisätään uusi
+     * listaan.
+     *
      */
     public void lisaaKurssi(Kurssi kurssi) {
         int i = 0;
@@ -52,8 +55,8 @@ class KurssiKanta {
     }
 
     /**
-     *  muokkaa listaa poistamalla vanhan ja lisäämällä uuden,
-     jottei duplikaatteja olisi.
+     * muokkaa listaa poistamalla vanhan ja lisäämällä uuden, jottei
+     * duplikaatteja olisi.
      */
     private void muokkaaKurssia(int i, Kurssi kurssi) {
         kurssiLista.remove(i);

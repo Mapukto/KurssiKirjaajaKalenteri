@@ -2,6 +2,8 @@
 package kkk.ui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -83,14 +85,22 @@ public class KalenteriUI extends JPanel {
         
         return otsikkoLokero;
     }
+    
+    JButton nappi;
 
     private JPanel teeNapit() {
         JPanel nappiLokero = new JPanel();
         
         JButton kurssinHallintaan = new JButton("Kurssienhallintaan");
+        nappi = kurssinHallintaan;
         nappiLokero.add(kurssinHallintaan, BorderLayout.CENTER);
+        
+        Kuuntelija kuuntelija = new Kuuntelija(kurssinHallintaan);
+        kurssinHallintaan.addActionListener(kuuntelija);
+        
         return nappiLokero;
     }
+    
 }
 
 //    private JPanel kalenteriUI() {
