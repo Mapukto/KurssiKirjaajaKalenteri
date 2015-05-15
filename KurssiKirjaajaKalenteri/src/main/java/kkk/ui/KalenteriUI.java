@@ -28,6 +28,7 @@ public class KalenteriUI extends JPanel {
         return kalenteri;
     }
     
+    
     private JPanel lokerot() {
          JPanel paivaPanel = new JPanel();
          paivaPanel.setLayout(new GridLayout(0,6));
@@ -69,11 +70,13 @@ public class KalenteriUI extends JPanel {
         return paivaPanel;
     }
 
+    
     private boolean onkoVarattu() {
         // tarkastaa kesken olevista kursseista onko aikaa tässä
         return false;
     }
 
+    
     private JPanel teeOtsikko() {
         JPanel otsikkoLokero = new JPanel();
         otsikkoLokero.setBorder(BorderFactory.createLineBorder(Color.BLACK));

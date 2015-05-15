@@ -10,10 +10,10 @@ public class Kuuntelija implements ActionListener {
     
     /**
      * 
-     * @param hallintaan
+     * @param kurssinHallintaan
      */
-    public Kuuntelija(JButton hallintaan) {
-        this.hallintaNappi = hallintaan;
+    public Kuuntelija(JButton kurssinHallintaan) {
+        this.hallintaNappi = kurssinHallintaan;
     }
 
     /**

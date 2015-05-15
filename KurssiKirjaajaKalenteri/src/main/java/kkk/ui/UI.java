@@ -42,6 +42,7 @@ public class UI implements Runnable {
         KalenteriUI alkuruutu = new KalenteriUI();
         
         c.add(alkuruutu);
+        c.repaint();
     }
     
     /**
