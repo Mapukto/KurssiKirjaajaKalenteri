@@ -1,18 +1,19 @@
 
-package kkk.ui;
+package kkk.ui.kalenteriui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import kkk.ui.UI;
 
-public class Kuuntelija implements ActionListener {
-    private JButton hallintaNappi;
+public class KalenteriKuuntelija implements ActionListener {
+    private final JButton hallintaNappi;
     
     /**
      * 
      * @param kurssinHallintaan
      */
-    public Kuuntelija(JButton kurssinHallintaan) {
+    public KalenteriKuuntelija(JButton kurssinHallintaan) {
         this.hallintaNappi = kurssinHallintaan;
     }
 
@@ -20,6 +21,7 @@ public class Kuuntelija implements ActionListener {
      * 
      * @param ae 
      */
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == hallintaNappi) {

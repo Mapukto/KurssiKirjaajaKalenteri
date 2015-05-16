@@ -3,6 +3,8 @@ package kkk.ui;
 
 import java.awt.*;
 import javax.swing.*;
+import kkk.ui.kalenteriui.KalenteriUI;
+import kkk.ui.listaui.KurssitUI;
 
 /**
  *
@@ -11,13 +13,13 @@ import javax.swing.*;
 
 public class UI implements Runnable {
 
-    JFrame frame;
+    private static JFrame frame;
 //    private JPanel panel;
     private static Container c;
 
     
     /**
-     * luodaan frame ja etusivuksi kalenterinäkymä
+     * luodaan frame ja etusivuksi kalenterinÃ¤kymÃ¤
      */
     @Override
     public void run() {
@@ -27,36 +29,35 @@ public class UI implements Runnable {
         
         c = frame.getContentPane();
         
-        luoKalenteriNakyma();
+        luoAlkunäkymä();
+//        luoKurssiNakyma();
         
         frame.pack();
         frame.setVisible(true);
     }
     
     /**
-     * luo kalenterinäkymän
+     * luo kalenterinÃ¤kymÃ¤n
      */
-    private void luoKalenteriNakyma() {
+    private static void luoAlkunäkymä() {
         c.setLayout(new FlowLayout());
         
         KalenteriUI alkuruutu = new KalenteriUI();
         
         c.add(alkuruutu);
-        c.repaint();
     }
     
     /**
-     * luo kurssinäkymän
+     * luo kurssinÃ¤kymÃ¤n
      */
     public static void luoKurssiNakyma() {
+        KurssitUI kurssiUI = new KurssitUI();
+        
         c.removeAll();
         c.repaint();
+        
+        c.add(kurssiUI);
+        
+        c.validate();
     }
-
-
-//    private Component napitUI() {
-//        
-//    }
-    
-    
 }

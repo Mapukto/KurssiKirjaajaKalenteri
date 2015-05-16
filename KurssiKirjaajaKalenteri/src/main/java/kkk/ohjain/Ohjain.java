@@ -1,6 +1,8 @@
 
 package kkk.ohjain;
 
+import java.util.List;
+import kkk.kurssikanta.Kurssi;
 import kkk.kurssikanta.KurssiKanta;
 import kkk.ui.UI;
 
@@ -10,12 +12,15 @@ import kkk.ui.UI;
  * @author mopo
  */
 public class Ohjain {
-    KurssiKanta kk;
+    static KurssiKanta kk;
     
     public Ohjain() {
-        this.kk = new KurssiKanta();
+        kk = new KurssiKanta();
         UI ui = new UI();
         ui.run();
     }
     
+    public static List getKurssit() {
+        return kk.getValmiitKurssit();
+    }
 }

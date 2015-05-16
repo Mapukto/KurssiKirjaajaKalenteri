@@ -1,5 +1,5 @@
 
-package kkk.ui;
+package kkk.ui.kalenteriui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -98,7 +98,7 @@ public class KalenteriUI extends JPanel {
         nappi = kurssinHallintaan;
         nappiLokero.add(kurssinHallintaan, BorderLayout.CENTER);
         
-        Kuuntelija kuuntelija = new Kuuntelija(kurssinHallintaan);
+        KalenteriKuuntelija kuuntelija = new KalenteriKuuntelija(kurssinHallintaan);
         kurssinHallintaan.addActionListener(kuuntelija);
         
         return nappiLokero;

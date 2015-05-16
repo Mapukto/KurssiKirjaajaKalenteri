@@ -11,6 +11,10 @@ public class KurssiKanta {
 
     private final List<Kurssi> kurssiLista;
     private final List<Kurssi> keskenOlevat;
+    
+    public List getValmiitKurssit() {
+        return kurssiLista;
+    }
 
     /**
      * luonnin yhteydessä luetaan tallennetut kurssit tiedostosta ja täytetään
@@ -20,11 +24,11 @@ public class KurssiKanta {
     public KurssiKanta() {
         this.kurssiLista = new ArrayList<>();
         this.keskenOlevat = new ArrayList<>();
-//        lataaKurssit();
+        lataaKurssit();
     }
 
     private void lataaKurssit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        kurssiLista.add(new ValmisKurssi("kakka",5));
     }
 
     /**

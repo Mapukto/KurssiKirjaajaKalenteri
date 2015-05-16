@@ -17,4 +17,9 @@ public class Kurssi {
     public int getNopat() {
         return this.nopat;
     }
+    
+    @Override
+    public String toString() {
+        return this.nimi + " " + this.nopat;
+    }
 }
