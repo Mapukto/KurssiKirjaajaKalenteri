@@ -20,6 +20,6 @@ public class Kurssi {
     
     @Override
     public String toString() {
-        return this.nimi + " " + this.nopat;
+        return this.nimi + "               " + this.nopat;
     }
 }

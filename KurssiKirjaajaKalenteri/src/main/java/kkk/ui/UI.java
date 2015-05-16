@@ -24,7 +24,7 @@ public class UI implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("KurssiKirjaajaKalenteri KKK");
-        frame.setPreferredSize(new Dimension(500,500));
+        frame.setPreferredSize(new Dimension(800,700));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         c = frame.getContentPane();
@@ -48,16 +48,34 @@ public class UI implements Runnable {
     }
     
     /**
-     * luo kurssinÃ¤kymÃ¤n
+     * 
      */
     public static void luoKurssiNakyma() {
+        c.setLayout(new BorderLayout());
         KurssitUI kurssiUI = new KurssitUI();
         
-        c.removeAll();
-        c.repaint();
+        tyhjennaRuutu();
         
         c.add(kurssiUI);
         
         c.validate();
+        frame.pack();
+    }
+    
+    public static void luoKalenteriNakyma() {
+        c.setLayout(new FlowLayout());
+        KalenteriUI kalenteri = new KalenteriUI();
+        
+        tyhjennaRuutu();
+        
+        c.add(kalenteri);
+        
+        c.validate();
+        frame.pack();
+    }
+    
+    public static void tyhjennaRuutu() {
+        c.removeAll();
+        c.repaint();
     }
 }

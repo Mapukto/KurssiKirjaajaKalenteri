@@ -28,7 +28,7 @@ public class KurssiKanta {
     }
 
     private void lataaKurssit() {
-        kurssiLista.add(new ValmisKurssi("kakka",5));
+        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
     }
 
     /**
