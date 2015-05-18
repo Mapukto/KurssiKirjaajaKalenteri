@@ -13,7 +13,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import kkk.kurssikanta.Kurssi;
+import kkk.kurssikanta.kurssi.Kurssi;
 import kkk.ohjain.Ohjain;
 
 /**

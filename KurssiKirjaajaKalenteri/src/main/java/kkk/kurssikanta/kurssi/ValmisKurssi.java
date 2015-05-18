@@ -1,5 +1,5 @@
 
-package kkk.kurssikanta;
+package kkk.kurssikanta.kurssi;
 
 
 /**

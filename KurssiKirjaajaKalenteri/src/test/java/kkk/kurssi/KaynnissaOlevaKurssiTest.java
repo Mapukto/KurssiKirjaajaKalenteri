@@ -1,8 +1,8 @@
 
 package kkk.kurssi;
 
-import kkk.kurssikanta.KaynnissaOlevaKurssi;
-import kkk.kurssikanta.Kurssi;
+import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
+import kkk.kurssikanta.kurssi.Kurssi;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +19,7 @@ public class KaynnissaOlevaKurssiTest {
 
     @Before
     public void setUp() {
-        k = new KaynnissaOlevaKurssi("kurssi1");
+//        k = new KaynnissaOlevaKurssi("kurssi1");
     }
     
     

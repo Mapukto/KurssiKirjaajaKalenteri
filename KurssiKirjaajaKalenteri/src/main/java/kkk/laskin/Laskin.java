@@ -2,7 +2,7 @@
 package kkk.laskin;
 
 import java.util.List;
-import kkk.kurssikanta.ValmisKurssi;
+import kkk.kurssikanta.kurssi.ValmisKurssi;
 import kkk.ohjain.Ohjain;
 
 /**

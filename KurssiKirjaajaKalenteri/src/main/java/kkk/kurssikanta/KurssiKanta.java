@@ -2,6 +2,7 @@ package kkk.kurssikanta;
 
 import java.util.ArrayList;
 import java.util.List;
+import kkk.kurssikanta.kurssi.Kurssi;
 
 /**
  *
