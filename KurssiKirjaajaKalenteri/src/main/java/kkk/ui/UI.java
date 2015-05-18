@@ -14,7 +14,6 @@ import kkk.ui.listaui.KurssitUI;
 public class UI implements Runnable {
 
     private static JFrame frame;
-//    private JPanel panel;
     private static Container c;
 
     
@@ -29,15 +28,15 @@ public class UI implements Runnable {
         
         c = frame.getContentPane();
         
-        luoAlkunäkymä();
-//        luoKurssiNakyma();
+//        luoAlkunäkymä();
+        luoKurssiNakyma();
         
         frame.pack();
         frame.setVisible(true);
     }
     
     /**
-     * luo kalenterinÃ¤kymÃ¤n
+     * luo kalenterinäkymän
      */
     private static void luoAlkunäkymä() {
         c.setLayout(new FlowLayout());

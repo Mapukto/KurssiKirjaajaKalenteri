@@ -3,15 +3,16 @@ package kkk.ui.listaui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
 import kkk.kurssikanta.Kurssi;
 import kkk.ohjain.Ohjain;
 
@@ -20,14 +21,16 @@ import kkk.ohjain.Ohjain;
  * @author mopo
  */
 public class KurssitUI extends JPanel {
-    List<Kurssi> kurssitLista;
-    Kurssi[] kurssit;
+    private List<Kurssi> kurssitLista;
+    private JList lista;
+    private DefaultListModel<Kurssi> listanOsat;
     
     public KurssitUI() {
         teeKurssiLista();        
         
         this.add(teeYlaOsa(), BorderLayout.SOUTH);
         this.add(kurssiLista(), BorderLayout.CENTER);
+        this.add(teeNappiOsio(), BorderLayout.SOUTH);
     }
     
     /**
@@ -40,7 +43,10 @@ public class KurssitUI extends JPanel {
     }
     
     private JScrollPane kurssiLista() {
-        JList kurssiLista = new JList(kurssit);
+        JList kurssiLista = new JList(listanOsat);
+        
+        this.lista = kurssiLista;
+        
         kurssiLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         kurssiLista.setLayoutOrientation(JList.VERTICAL);
         kurssiLista.setVisibleRowCount(-1);
@@ -53,17 +59,34 @@ public class KurssitUI extends JPanel {
 
     private void teeKurssiLista() {
         kurssitLista = new ArrayList<>(Ohjain.getKurssit());
-        int kurssitSize = kurssitLista.size();
+        listanOsat = new DefaultListModel();
         
-        kurssit = new Kurssi[kurssitSize];
-        
-        for (int i = 0; i < kurssitSize; i++) {
-            kurssit[i] = kurssitLista.get(i);
+        for (Kurssi k : kurssitLista) {
+            listanOsat.addElement(k);
         }
     }
     
     private JPanel teeNappiOsio() {
         JPanel nappiPanel = new JPanel();
-        return null;
+        nappiPanel.setLayout(new FlowLayout());
+        
+        JButton kalenteriNakyma = new JButton("Kalenterinnäkymään");
+        JButton poistaKurssi = new JButton("Poista kurssi");
+        JButton uusiKurssi = new JButton("Uusi kurssi");
+        JButton statistiikkaNakymaan = new JButton("Statistiikkaan");
+        
+        KurssilistaKuuntelija kuuntelija = new KurssilistaKuuntelija(kalenteriNakyma, poistaKurssi, uusiKurssi, statistiikkaNakymaan, lista, listanOsat);
+        
+        kalenteriNakyma.addActionListener(kuuntelija);
+        poistaKurssi.addActionListener(kuuntelija);
+        uusiKurssi.addActionListener(kuuntelija);
+        statistiikkaNakymaan.addActionListener(kuuntelija);
+        
+        nappiPanel.add(kalenteriNakyma);
+        nappiPanel.add(statistiikkaNakymaan);
+        nappiPanel.add(uusiKurssi);
+        nappiPanel.add(poistaKurssi);
+        
+        return nappiPanel;
     }
 }

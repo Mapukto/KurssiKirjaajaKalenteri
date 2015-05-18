@@ -29,33 +29,25 @@ public class KurssiKanta {
 
     private void lataaKurssit() {
         kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
+        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
+        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
+        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
+        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
+        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
+        kurssiLista.add(new ValmisKurssi("penis menetelmät",5));
+        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
+        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan kakka",5));
+        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
+        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
+        
     }
-
+    
     /**
-     * tarkastetaan, ettei samannimistä kurssia ole jo listassa. jos saman
-     * niminen löytyy, kurssi "muokataan", eli vanha poistetaan ja lisätään uusi
-     * listaan.
-     *
+     * 
+     * @param index 
      */
-    public void lisaaKurssi(Kurssi kurssi) {
-        int i = 0;
-
-        for (Kurssi listanKurssi : kurssiLista) {
-            if (listanKurssi.getNimi().equals(kurssi.getNimi())) {
-                muokkaaKurssia(i, kurssi);
-                return;
-            }
-            i++;
-        }
-        kurssiLista.add(kurssi);
-    }
-
-    private void poistaKurssi(String nimi) {
-        for (Kurssi kurssiLista1 : kurssiLista) {
-            if (kurssiLista1.getNimi().equals(nimi)) {
-                kurssiLista.remove(kurssiLista1);
-            }
-        }
+    public void poistaKurssi(int index) {
+        kurssiLista.remove(index);
     }
 
     /**

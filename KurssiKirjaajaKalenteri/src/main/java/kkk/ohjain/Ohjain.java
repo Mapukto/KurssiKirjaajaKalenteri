@@ -13,6 +13,10 @@ import kkk.ui.UI;
  */
 public class Ohjain {
     static KurssiKanta kk;
+
+    public static void poistaKurssi(int index) {
+        kk.poistaKurssi(index);
+    }
     
     public Ohjain() {
         kk = new KurssiKanta();

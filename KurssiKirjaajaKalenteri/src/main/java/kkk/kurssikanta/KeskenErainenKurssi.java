@@ -11,14 +11,13 @@ package kkk.kurssikanta;
  */
 public class KeskenErainenKurssi extends Kurssi {
 //    private final int pituus;
+    
     /**
      * 
      * @param nimi
-     * @param nopat
-     * @param pituus 
      */
-    public KeskenErainenKurssi(String nimi, int nopat) {
-        super(nimi, nopat);
+    public KeskenErainenKurssi(String nimi) {
+        super(nimi);
 //        this.pituus = pituus;
     }
     
