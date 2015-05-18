@@ -28,17 +28,7 @@ public class KurssiKanta {
     }
 
     private void lataaKurssit() {
-        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
-        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
-        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
-        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
-        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
-        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
-        kurssiLista.add(new ValmisKurssi("penis menetelmät",5));
-        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
-        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan kakka",5));
-        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
-        kurssiLista.add(new ValmisKurssi("Ohjelmistotekniikan menetelmät",5));
+        
         
     }
     

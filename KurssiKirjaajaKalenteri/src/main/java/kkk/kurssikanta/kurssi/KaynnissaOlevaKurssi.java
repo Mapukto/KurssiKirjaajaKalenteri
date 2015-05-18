@@ -9,14 +9,13 @@ package kkk.kurssikanta;
  *
  * @author mopo
  */
-public class KeskenErainenKurssi extends Kurssi {
-//    private final int pituus;
+public class KaynnissaOlevaKurssi extends Kurssi {
     
     /**
      * 
      * @param nimi
      */
-    public KeskenErainenKurssi(String nimi) {
+    public KaynnissaOlevaKurssi(String nimi) {
         super(nimi);
 //        this.pituus = pituus;
     }

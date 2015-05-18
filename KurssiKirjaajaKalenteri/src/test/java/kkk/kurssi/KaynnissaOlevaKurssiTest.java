@@ -1,6 +1,8 @@
 
 package kkk.kurssi;
 
+import kkk.kurssikanta.KaynnissaOlevaKurssi;
+import kkk.kurssikanta.Kurssi;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,25 +14,13 @@ import static org.junit.Assert.*;
  *
  * @author mopo
  */
-public class KurssiTest {
-    
-    public KurssiTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+public class KaynnissaOlevaKurssiTest {
+    Kurssi k;
+
     @Before
     public void setUp() {
+        k = new KaynnissaOlevaKurssi("kurssi1");
     }
     
-    @After
-    public void tearDown() {
-    }
-
+    
 }

@@ -17,29 +17,16 @@ import static org.junit.Assert.*;
  * @author mopo
  */
 public class LaskinTest {
-    
-    public LaskinTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    Laskin laskin;
     
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        laskin = new Laskin();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void kaLasketaanOikein() {
+        
+    }
+    
 }
