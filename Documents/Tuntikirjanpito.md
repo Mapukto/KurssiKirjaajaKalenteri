@@ -4,5 +4,6 @@
 - 13.5 ~2h uml kaavioita ja ohjelman suunnittelua.
 - 15.5 3h luokkien ja grafiikan teko
 - 17.5 4h ui ja logiikka
+- 18.5 5h ui ja logiikka
 
-## yht. 11 h
+## yht. 16 h
