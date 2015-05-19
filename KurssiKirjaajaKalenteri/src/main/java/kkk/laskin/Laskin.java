@@ -84,7 +84,7 @@ public class Laskin {
     
     
     /**
-     * konstruktori testejä varten
+     * konstruktori testejÃ¤ varten
      * @param paramKurssit 
      */
     public Laskin(List<ValmisKurssi> paramKurssit) {

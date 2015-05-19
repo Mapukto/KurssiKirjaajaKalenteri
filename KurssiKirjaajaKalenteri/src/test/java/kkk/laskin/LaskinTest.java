@@ -23,17 +23,23 @@ import static org.junit.Assert.*;
 public class LaskinTest {
 
     Laskin laskin;
+    private List<ValmisKurssi> kurssit;
+    private int kurssitYht;
+    private double ka;
+    private int nopatYht;
+    private double painotettuKa;
 
     @Before
     public void setUp() {
-        List<ValmisKurssi> kurssit = new ArrayList<>();
+        
+        List<ValmisKurssi> kurssiLista = new ArrayList<>();
 
-        kurssit.add(new ValmisKurssi("testiKurssi", 1, 5, 1));
-        kurssit.add(new ValmisKurssi("testiKurssi2", 2, 5, 1));
-        kurssit.add(new ValmisKurssi("testiKurssi3", 3, 5, 1));
-        kurssit.add(new ValmisKurssi("testiKurssi3", 3, 1, 1));
+        kurssiLista.add(new ValmisKurssi("testiKurssi", 1, 5, 1));
+        kurssiLista.add(new ValmisKurssi("testiKurssi2", 2, 5, 1));
+        kurssiLista.add(new ValmisKurssi("testiKurssi3", 3, 5, 1));
+        kurssiLista.add(new ValmisKurssi("testiKurssi3", 3, 1, 1));
 
-        laskin = new Laskin(kurssit);
+        laskin = new Laskin(kurssiLista);
     }
 
     @Test
@@ -55,4 +61,24 @@ public class LaskinTest {
     public void kurssienKokonaisMaaraLasketaanOikein() {
         assertEquals(4, laskin.getKurssitYht());
     }
+    
+    @Test
+    public void kaPalauttaaNollanJosListaOnTyhja() {
+        List<ValmisKurssi> kurssiLista = new ArrayList<>();
+        
+        Laskin  tyhjaLaskin = new Laskin(kurssiLista);
+        
+        assertEquals(0, tyhjaLaskin.getKa(), 0.1);
+    }
+    
+    @Test
+    public void painotettuKaPalauttaaNollanJosListaOnTyhja() {
+        List<ValmisKurssi> kurssiLista = new ArrayList<>();
+        
+        Laskin  tyhjaLaskin = new Laskin(kurssiLista);
+        
+        assertEquals(0, tyhjaLaskin.getPainotettuKa(), 0.1);
+    }
 }
+
+
