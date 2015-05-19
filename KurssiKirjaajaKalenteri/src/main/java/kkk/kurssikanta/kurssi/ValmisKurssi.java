@@ -11,7 +11,7 @@ public class ValmisKurssi extends Kurssi {
     private final int arvosana;
     private final int suoritusPvm;
 
-    public ValmisKurssi(String nimi, int nopat, int arvosana, int suoritusPvm) {
+    public ValmisKurssi(String nimi, int arvosana, int nopat, int suoritusPvm) {
         super(nimi);
         this.nopat = nopat;
         this.arvosana = arvosana;
@@ -32,7 +32,7 @@ public class ValmisKurssi extends Kurssi {
      */
     @Override
     public String toString() {
-        return super.toString() + " " + this.nopat;
+        return super.toString() + "    " + this.nopat + "    " + this.arvosana + "    " + this.suoritusPvm;
     }
 
 }

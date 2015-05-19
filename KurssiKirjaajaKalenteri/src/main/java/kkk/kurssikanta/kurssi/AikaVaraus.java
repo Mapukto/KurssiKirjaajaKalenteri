@@ -20,10 +20,6 @@ public class AikaVaraus {
         aikaMap = new HashMap<>();
         teePva();
     }
-    
-    public HashMap getAjat() {
-        return aikaMap;
-    }
 
     private void teePva() {
         for (int i = 0; i < rawPvat.length; i++) {
@@ -72,5 +68,11 @@ public class AikaVaraus {
         for (int j = 0; j < erotus; j++) {
             aikaMap.get(i).add(alku + j);
         }
+    }
+    
+    public boolean onkoVarattu(int pva, int tunti) {
+        if (!aikaMap.containsKey(pva)) return false;
+        if (!aikaMap.get(pva).contains(tunti)) return false;
+        return true;
     }
 }

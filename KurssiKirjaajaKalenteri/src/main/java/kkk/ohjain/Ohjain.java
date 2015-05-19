@@ -19,14 +19,14 @@ public class Ohjain {
      * 
      */
     public Ohjain() {
-        laskin = new Laskin();
         kk = new KurssiKanta();
+        laskin = new Laskin();
         UI ui = new UI();
         ui.run();
     }
 
     public static void poistaKurssi(int index) {
-        kk.poistaKurssi(index);
+        kk.poistaValmisKurssi(index);
     }
     
     public static List getKurssit() {

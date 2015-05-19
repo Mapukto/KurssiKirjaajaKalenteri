@@ -1,6 +1,7 @@
 
 package kkk.kurssi;
 
+import kkk.kurssikanta.kurssi.AikaVaraus;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.kurssikanta.kurssi.Kurssi;
 import org.junit.After;
@@ -19,7 +20,10 @@ public class KaynnissaOlevaKurssiTest {
 
     @Before
     public void setUp() {
-//        k = new KaynnissaOlevaKurssi("kurssi1");
+        String[] päivät = {"ma","ti","ke"};
+        String[] ajat = {"10-12","14-16","12-14"};
+        
+        k = new KaynnissaOlevaKurssi("kurssi1", new AikaVaraus(päivät, ajat));
     }
     
     

@@ -72,7 +72,8 @@ public class KalenteriUI extends JPanel {
 
     
     private boolean onkoVarattu() {
-        // tarkastaa kesken olevista kursseista onko aikaa tässä
+        
+        
         return false;
     }
 

@@ -1,27 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package kkk.kurssikanta.kurssi;
 
-import java.util.Map;
+import java.util.HashMap;
+
 
 /**
  *
  * @author mopo
  */
 public class KaynnissaOlevaKurssi extends Kurssi {
-    private final Map ajat;
+    private final AikaVaraus ajat;
     
     /**
      * 
      * @param nimi
      * @param ajat
      */
-    public KaynnissaOlevaKurssi(String nimi, Map ajat) {
+    public KaynnissaOlevaKurssi(String nimi, AikaVaraus ajat) {
         super(nimi);
         this.ajat = ajat;
     }
     
+    public boolean onkoVarattu(int pva, int tunti) {
+        return ajat.onkoVarattu(pva, tunti);
+    }
 }

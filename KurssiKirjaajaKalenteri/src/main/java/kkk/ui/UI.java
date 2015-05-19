@@ -28,8 +28,8 @@ public class UI implements Runnable {
         
         c = frame.getContentPane();
         
-//        luoAlkunäkymä();
-        luoKurssiNakyma();
+        luoAlkunäkymä();
+//        luoKurssiNakyma();
         
         frame.pack();
         frame.setVisible(true);
