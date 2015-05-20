@@ -8,7 +8,6 @@ import java.util.HashSet;
  * @author mopo
  */
 public class AikaVaraus {
-
     private final String[] rawPvat;
     private final String[] rawAjat;
 
