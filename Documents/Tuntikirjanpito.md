@@ -5,5 +5,6 @@
 - 15.5 3h luokkien ja grafiikan teko
 - 17.5 4h ui ja logiikka
 - 18.5 5h ui ja logiikka
+- 19.5 4h testit ja logiikka
 
-## yht. 16 h
+## yht. 20 h
