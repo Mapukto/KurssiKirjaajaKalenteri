@@ -9,13 +9,13 @@ package kkk.kurssikanta.kurssi;
 public class ValmisKurssi extends Kurssi {
     private final int nopat;
     private final int arvosana;
-    private final int suoritusPvm;
+//    private final int suoritusPvm;
 
-    public ValmisKurssi(String nimi, int arvosana, int nopat, int suoritusPvm) {
+    public ValmisKurssi(String nimi, int arvosana, int nopat) {
         super(nimi);
         this.nopat = nopat;
         this.arvosana = arvosana;
-        this.suoritusPvm = suoritusPvm;
+//        this.suoritusPvm = suoritusPvm;
     }
     
     public int getArvosana() {
@@ -27,12 +27,20 @@ public class ValmisKurssi extends Kurssi {
     }
     
     /**
+     *
+     * @return
+     */
+    @Override
+    public String getNimi() {
+        return super.getNimi();
+    }
+    /**
      * TODO
      * @return 
      */
     @Override
     public String toString() {
-        return super.toString() + "    " + this.nopat + "    " + this.arvosana + "    " + this.suoritusPvm;
+        return super.toString() + "    " + this.nopat + "    " + this.arvosana;
     }
 
 }

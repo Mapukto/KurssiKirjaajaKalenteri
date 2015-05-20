@@ -57,6 +57,10 @@ public class AikaVaraus {
             }
         }
     }
+    
+    public HashMap<Integer, HashSet<Integer>> getAikaMap() {
+        return aikaMap;
+    }
 
     private void laitaTunnit(int i, String paramAjat) {
         String[] ajat = paramAjat.split("-");

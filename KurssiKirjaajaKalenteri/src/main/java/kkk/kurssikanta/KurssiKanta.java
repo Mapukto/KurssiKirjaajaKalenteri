@@ -31,15 +31,11 @@ public class KurssiKanta {
     }
     
     private void lataaKurssit() {
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5, 05122015));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5, 05122015));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5, 05122015));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5, 05122015));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5, 05122015));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5, 05122015));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5, 05122015));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5, 05122015));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5, 05122015));
+        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5));
+        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5));
+        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5));
+        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5));
+        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5));
     }
 
     public void lisaaValmisKurssi(Kurssi kurssi) {

@@ -23,4 +23,16 @@ public class KaynnissaOlevaKurssi extends Kurssi {
     public boolean onkoVarattu(int pva, int tunti) {
         return ajat.onkoVarattu(pva, tunti);
     }
+    
+    public AikaVaraus getAikaVaraukset() {
+        return ajat;
+    }
+    /**
+     *
+     * @return palauttaa nimen
+     */
+    @Override
+    public String getNimi() {
+        return super.getNimi();
+    }
 }

@@ -34,10 +34,10 @@ public class LaskinTest {
         
         List<ValmisKurssi> kurssiLista = new ArrayList<>();
 
-        kurssiLista.add(new ValmisKurssi("testiKurssi", 1, 5, 1));
-        kurssiLista.add(new ValmisKurssi("testiKurssi2", 2, 5, 1));
-        kurssiLista.add(new ValmisKurssi("testiKurssi3", 3, 5, 1));
-        kurssiLista.add(new ValmisKurssi("testiKurssi3", 3, 1, 1));
+        kurssiLista.add(new ValmisKurssi("testiKurssi", 1, 5));
+        kurssiLista.add(new ValmisKurssi("testiKurssi2", 2, 5));
+        kurssiLista.add(new ValmisKurssi("testiKurssi3", 3, 5));
+        kurssiLista.add(new ValmisKurssi("testiKurssi3", 3, 1));
 
         laskin = new Laskin(kurssiLista);
     }
