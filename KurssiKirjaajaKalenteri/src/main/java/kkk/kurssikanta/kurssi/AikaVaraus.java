@@ -23,7 +23,7 @@ public class AikaVaraus {
 
     private void teePva() {
         for (int i = 0; i < rawPvat.length; i++) {
-            switch (rawPvat[i]) {
+            switch (rawPvat[i].toLowerCase()) {
                 case "ma":
                     if (!aikaMap.containsKey(1)) {
                         aikaMap.put(1, new HashSet<Integer>());
@@ -58,8 +58,8 @@ public class AikaVaraus {
         }
     }
 
-    private void laitaTunnit(int i, String rawAjat) {
-        String[] ajat = rawAjat.split("-");
+    private void laitaTunnit(int i, String paramAjat) {
+        String[] ajat = paramAjat.split("-");
         
         int alku = Integer.parseInt(ajat[0]);
         int loppu = Integer.parseInt(ajat[1]);
@@ -72,7 +72,6 @@ public class AikaVaraus {
     
     public boolean onkoVarattu(int pva, int tunti) {
         if (!aikaMap.containsKey(pva)) return false;
-        if (!aikaMap.get(pva).contains(tunti)) return false;
-        return true;
+        return aikaMap.get(pva).contains(tunti);
     }
 }

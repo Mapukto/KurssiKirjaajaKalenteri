@@ -1,5 +1,5 @@
 
-package kkk.kurssi;
+package kkk.kurssikanta.kurssi;
 
 import kkk.kurssikanta.kurssi.AikaVaraus;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
