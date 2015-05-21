@@ -10,7 +10,6 @@ import kkk.ui.listaui.KurssitUI;
  *
  * @author mopo
  */
-
 public class UI implements Runnable {
 
     private static JFrame frame;
@@ -18,7 +17,7 @@ public class UI implements Runnable {
 
     
     /**
-     * luodaan frame ja etusivuksi kalenterinÃ¤kymÃ¤
+     * luodaan frame ja etusivuksi kalenterinÃƒÂ¤kymÃƒÂ¤
      */
     @Override
     public void run() {
@@ -28,32 +27,27 @@ public class UI implements Runnable {
         
         c = frame.getContentPane();
         
-        luoAlkunäkymä();
-//        luoKurssiNakyma();
+        c.setLayout(new FlowLayout());
+        
+        KalenteriUI alkuruutu = new KalenteriUI();
+        
+        c.add(alkuruutu);
         
         frame.pack();
         frame.setVisible(true);
     }
     
     /**
-     * luo kalenterinäkymän
-     */
-    private static void luoAlkunäkymä() {
-        c.setLayout(new FlowLayout());
-        
-        KalenteriUI alkuruutu = new KalenteriUI();
-        
-        c.add(alkuruutu);
-    }
-    
-    /**
-     * 
+     * luo kurssinÃ¤kymÃ¤n. nÃ¤kymÃ¤t luodaan omissa luokissaan, jotka sitten lisÃ¤tÃ¤Ã¤n JFramen pÃ¤Ã¤lle.
+     * Koodi on toistuvaa kaikissa nÃ¤kymÃ¤nvaihdoissa, mutten keksinyt vielÃ¤ jÃ¤rkevÃ¤mpÃ¤Ã¤
+     * tapaa hallita nÃ¤kymiÃ¤...+
      */
     public static void luoKurssiNakyma() {
         c.setLayout(new BorderLayout());
         KurssitUI kurssiUI = new KurssitUI();
         
-        tyhjennaRuutu();
+        c.removeAll();
+        c.repaint();
         
         c.add(kurssiUI);
         
@@ -61,11 +55,15 @@ public class UI implements Runnable {
         frame.pack();
     }
     
+    /**
+     * luo kalenterinÃ¤kymÃ¤n.
+     */
     public static void luoKalenteriNakyma() {
         c.setLayout(new FlowLayout());
         KalenteriUI kalenteri = new KalenteriUI();
         
-        tyhjennaRuutu();
+        c.removeAll();
+        c.repaint();
         
         c.add(kalenteri);
         
@@ -73,8 +71,7 @@ public class UI implements Runnable {
         frame.pack();
     }
     
-    public static void tyhjennaRuutu() {
-        c.removeAll();
-        c.repaint();
+    private static void muutaNakyma(JPanel panel) {
+        
     }
 }

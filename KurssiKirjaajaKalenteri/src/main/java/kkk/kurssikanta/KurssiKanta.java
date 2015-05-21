@@ -2,6 +2,7 @@ package kkk.kurssikanta;
 
 import java.util.ArrayList;
 import java.util.List;
+import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.kurssikanta.kurssi.Kurssi;
 import kkk.kurssikanta.kurssi.ValmisKurssi;
 
@@ -11,8 +12,8 @@ import kkk.kurssikanta.kurssi.ValmisKurssi;
  */
 public class KurssiKanta {
 
-    private final List<Kurssi> kurssiLista;
-    private final List<Kurssi> keskenOlevat;
+    private final List<ValmisKurssi> valmiitKurssit;
+    private final List<KaynnissaOlevaKurssi> keskenOlevatKurssit;
     
     
     /**
@@ -21,40 +22,52 @@ public class KurssiKanta {
      *
      */
     public KurssiKanta() {
-        this.kurssiLista = new ArrayList<>();
-        this.keskenOlevat = new ArrayList<>();
+        this.valmiitKurssit = new ArrayList<>();
+        this.keskenOlevatKurssit = new ArrayList<>();
         lataaKurssit();
     }
     
-    public List<Kurssi> getValmiitKurssit() {
-        return this.kurssiLista;
+    public List<ValmisKurssi> getValmiitKurssit() {
+        return this.valmiitKurssit;
     }
     
     private void lataaKurssit() {
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5));
-        this.kurssiLista.add(new ValmisKurssi("asd", 5, 5));
+        this.valmiitKurssit.add(new ValmisKurssi("asd", 5, 5, "a"));
+        this.valmiitKurssit.add(new ValmisKurssi("asd", 5, 5, "a"));
+        this.valmiitKurssit.add(new ValmisKurssi("asd", 5, 5, "a"));
+        this.valmiitKurssit.add(new ValmisKurssi("asd", 5, 5, "a"));
+        this.valmiitKurssit.add(new ValmisKurssi("asd", 5, 5, "a"));
     }
 
-    public void lisaaValmisKurssi(Kurssi kurssi) {
-        kurssiLista.add(kurssi);
+    public void lisaaValmisKurssi(ValmisKurssi kurssi) {
+        valmiitKurssit.add(kurssi);
     }
     
-    public void lisaaKeskenOlevaKurssi(Kurssi kurssi) {
-        keskenOlevat.add(kurssi);
+    public void lisaaKeskenOlevaKurssi(KaynnissaOlevaKurssi kurssi) {
+        keskenOlevatKurssit.add(kurssi);
     }
     
     public void poistaValmisKurssi(int index) {
-        kurssiLista.remove(index);
+        valmiitKurssit.remove(index);
     }
     
     public void poistaKeskenOlevaKurssi(int index) {
-        keskenOlevat.remove(index);
+        keskenOlevatKurssit.remove(index);
     }
     
     public void poistaKaikkiKeskenOlevatKurssit() {
-        keskenOlevat.clear();
+        keskenOlevatKurssit.clear();
+    }
+    
+    
+    
+    
+    /**
+     * testejä varten tehty konstruktori. teen järkevämmät testit heti kun opettelen
+     * miten mockito toimii!
+     */
+    public KurssiKanta(List<KaynnissaOlevaKurssi> kesken, List<ValmisKurssi> valmiit) {
+        this.keskenOlevatKurssit = kesken;
+        this.valmiitKurssit = valmiit;
     }
 }

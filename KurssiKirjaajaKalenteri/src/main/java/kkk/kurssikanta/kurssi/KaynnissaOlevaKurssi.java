@@ -1,8 +1,5 @@
 package kkk.kurssikanta.kurssi;
 
-import java.util.HashMap;
-
-
 /**
  *
  * @author mopo
