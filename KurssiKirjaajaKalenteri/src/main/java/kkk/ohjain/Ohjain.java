@@ -10,6 +10,7 @@ import kkk.io.Lukija;
 import kkk.kurssikanta.KurssiKanta;
 import kkk.kurssikanta.kurssi.AikaVaraus;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
+import kkk.kurssikanta.kurssi.ValmisKurssi;
 import kkk.laskin.Laskin;
 import kkk.ui.UI;
 
@@ -49,5 +50,9 @@ public class Ohjain {
     
     public static void teeKeskenErainenKurssi(KaynnissaOlevaKurssi kurssi) {
         kk.lisaaKeskenOlevaKurssi(null);
+    }
+    
+    public static void teeValmisKurssi(ValmisKurssi kurssi) {
+        kk.lisaaValmisKurssi(kurssi);
     }
 }

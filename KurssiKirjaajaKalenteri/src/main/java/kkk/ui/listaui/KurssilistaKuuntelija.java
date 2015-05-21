@@ -45,6 +45,10 @@ public class KurssilistaKuuntelija implements ActionListener {
             int koko = listModel.getSize();
             if (koko == 0) poista.setEnabled(false);
         }
+        
+        if (ae.getSource() == uusi) {
+            UI.luoUusiValmisKurssiNakyma();
+        }
     }
     
 }
