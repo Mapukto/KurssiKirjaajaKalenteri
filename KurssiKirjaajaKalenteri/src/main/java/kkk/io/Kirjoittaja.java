@@ -18,22 +18,16 @@ public class Kirjoittaja {
     private BufferedWriter valmiitWriter;
     private BufferedWriter keskenWriter;
 
-    public Kirjoittaja() {
-    }
-
-    private void luoValmiitKirjoittaja() throws IOException {
-        valmiitWriter = new BufferedWriter(new FileWriter(new File("valmiit.txt"), true));
-    }
-
-    private void luoKeskenKirjoittaja() throws IOException {
-        keskenWriter = new BufferedWriter(new FileWriter(new File("keskenEraiset"), true));
-    }
-
+    /**
+     * tallennetaan valmis kurssi tiedostoon
+     * @param kurssi tallennettava kurssi
+     */
     public void tallennaValmisKurssi(ValmisKurssi kurssi) {
         try {
-            luoValmiitKirjoittaja();
+            valmiitWriter = new BufferedWriter(new FileWriter("src/main/java/kkk/io/valmiit.txt", true));
             
             String kurssiTiedot = kurssi.getNimi() + ":" + kurssi.getArvosana() + ":" + kurssi.getNopat();
+            
             valmiitWriter.write(kurssiTiedot + "\n");
             valmiitWriter.close();
         } catch (IOException ex) {
@@ -41,22 +35,31 @@ public class Kirjoittaja {
         }
     }
 
+    /**
+     * tallennetaan keskeneräinen kurssi
+     * @param kurssi tallennettava kurssi
+     */
     public void tallennaKeskenErainenKurssi(KaynnissaOlevaKurssi kurssi) {
-
         try {
-            luoKeskenKirjoittaja();
+            keskenWriter = new BufferedWriter(new FileWriter("src/main/java/kkk/io/kaynnissaOlevat.txt", true));
             
-            String aikaMap = teeAjatKirjoitusAsu(kurssi);
+            /**
+             * kirjoitusasu: Kurssin nimi/pva1/aika1/pva2/aika2/...../pvaN/aikaN
+             */
+            String ajatKirjoitusAsussa = teeAjatKirjoitusAsu(kurssi);
 
-            keskenWriter.write(aikaMap);
+            keskenWriter.write(ajatKirjoitusAsussa);
             keskenWriter.close();
-            System.out.println("on suljettu");
         } catch (Exception e) {
             System.out.println("kesken eräisen kurrsin kirjoitus kusee");
         }
-
     }
 
+    /**
+     * tehdään keskeneräisen kurssin kirjoitusasu muotoon Kurssin nimi/pva1/aika1/pva2/aika2/...../pvaN/aikaN
+     * @param kurssi tallennettava kurssi
+     * @return tallennettava String
+     */
     private String teeAjatKirjoitusAsu(KaynnissaOlevaKurssi kurssi) {
         StringBuilder kirjoitusAsu = new StringBuilder(kurssi.getNimi());
         AikaVaraus ajat = kurssi.getAikaVaraukset();
@@ -73,7 +76,6 @@ public class Kirjoittaja {
         }
 
         kirjoitusAsu.append("\n");
-        System.out.println(kirjoitusAsu.toString());
         return kirjoitusAsu.toString();
     }
 }
