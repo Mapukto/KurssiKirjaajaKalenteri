@@ -57,8 +57,9 @@ public class KalenteriUI extends JPanel {
                 aikaIndex++;
             } else {
                 lokero.setBackground(Color.WHITE);
-                if (onkoVarattu()) {
+                if (onkoVarattu(i)) {
                     lokero.setBackground(Color.RED);
+                    onkoVarattu.setText("");
                 }
             }
             
@@ -70,9 +71,15 @@ public class KalenteriUI extends JPanel {
         return paivaPanel;
     }
 
-    
-    private boolean onkoVarattu() {
-        
+    /**
+     * oikea päivä löytyy tarkastamalla onko (index - pvanumero) % 6 == 0.
+     * @param index
+     * @return 
+     */
+    private boolean onkoVarattu(int index) {
+        if ((index - 3) % 6 == 0) {
+            return true;
+        }
         
         return false;
     }

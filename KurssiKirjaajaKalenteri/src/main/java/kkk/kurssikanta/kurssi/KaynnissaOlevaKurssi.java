@@ -24,6 +24,7 @@ public class KaynnissaOlevaKurssi extends Kurssi {
     public AikaVaraus getAikaVaraukset() {
         return ajat;
     }
+    
     /**
      *
      * @return palauttaa nimen
