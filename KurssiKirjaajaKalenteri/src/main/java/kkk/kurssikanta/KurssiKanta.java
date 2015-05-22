@@ -5,13 +5,13 @@ import java.util.List;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.kurssikanta.kurssi.Kurssi;
 import kkk.kurssikanta.kurssi.ValmisKurssi;
+import kkk.ohjain.Ohjain;
 
 /**
  *
  * @author mopo
  */
-public class KurssiKanta {
-
+public final class KurssiKanta {
     private final List<ValmisKurssi> valmiitKurssit;
     private final List<KaynnissaOlevaKurssi> keskenOlevatKurssit;
     
@@ -24,19 +24,10 @@ public class KurssiKanta {
     public KurssiKanta() {
         this.valmiitKurssit = new ArrayList<>();
         this.keskenOlevatKurssit = new ArrayList<>();
-        lataaKurssit();
     }
     
     public List<ValmisKurssi> getValmiitKurssit() {
         return this.valmiitKurssit;
-    }
-    
-    private void lataaKurssit() {
-        this.valmiitKurssit.add(new ValmisKurssi("asd", 5, 5, "a"));
-        this.valmiitKurssit.add(new ValmisKurssi("asd", 5, 5, "a"));
-        this.valmiitKurssit.add(new ValmisKurssi("asd", 5, 5, "a"));
-        this.valmiitKurssit.add(new ValmisKurssi("asd", 5, 5, "a"));
-        this.valmiitKurssit.add(new ValmisKurssi("asd", 5, 5, "a"));
     }
 
     public void lisaaValmisKurssi(ValmisKurssi kurssi) {

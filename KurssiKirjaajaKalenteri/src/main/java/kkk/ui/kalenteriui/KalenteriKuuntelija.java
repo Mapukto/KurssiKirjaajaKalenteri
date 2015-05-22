@@ -21,7 +21,6 @@ public class KalenteriKuuntelija implements ActionListener {
      * 
      * @param ae 
      */
-    
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == hallintaNappi) {

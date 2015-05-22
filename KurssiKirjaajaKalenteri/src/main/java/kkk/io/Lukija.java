@@ -3,12 +3,10 @@ package kkk.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import kkk.kurssikanta.kurssi.AikaVaraus;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
+import kkk.kurssikanta.kurssi.ValmisKurssi;
 import kkk.ohjain.Ohjain;
 
 public class Lukija {
@@ -27,6 +25,9 @@ public class Lukija {
             String[] ajat = {};
             
             String oneLine = keskenOlevaSc.nextLine();
+            
+            if (oneLine.equals("")) continue;
+            
             String[] palat = oneLine.split("/");
             
             String nimi = palat[0];
@@ -46,6 +47,30 @@ public class Lukija {
             
             KaynnissaOlevaKurssi newKurssi = new KaynnissaOlevaKurssi(nimi, new AikaVaraus(paivat, ajat));
             Ohjain.teeKeskenErainenKurssi(newKurssi);
+        }
+    }
+    
+    public void lueValmiitKurssit() {
+        try {
+            valmiitSc = new Scanner(new File("src/main/java/kkk/io/valmiit.txt"));
+        } catch (Exception e) {
+            System.out.println("valmiiden luku kusee");
+        }
+        
+        while (valmiitSc.hasNextLine()) {
+            String oneLine = valmiitSc.nextLine();
+            
+            if (oneLine.equals("")) continue;
+            
+            String[] palat = oneLine.split("/");
+            
+            String nimi = palat[0];
+            int arvosana = Integer.parseInt(palat[1]);
+            int nopat = Integer.parseInt(palat[2]);
+            String aika = palat[3];
+            
+            ValmisKurssi uusiKurssi = new ValmisKurssi(nimi, arvosana, nopat, aika);
+            Ohjain.tallennaTiedostostaValmisKurssi(uusiKurssi);
         }
     }
 }

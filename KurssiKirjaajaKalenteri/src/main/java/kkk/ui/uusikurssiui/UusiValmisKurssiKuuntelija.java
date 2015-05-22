@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import kkk.kurssikanta.kurssi.ValmisKurssi;
+import kkk.ohjain.Ohjain;
 import kkk.ui.UI;
 
 /**
@@ -32,12 +34,22 @@ class UusiValmisKurssiKuuntelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == submit) {
-            
+            luoUusiValmisKurssi();
+            UI.luoKurssiNakyma();
         }
         
         if (ae.getSource() == back) {
             UI.luoKurssiNakyma();
         }
+    }
+
+    private void luoUusiValmisKurssi() throws NumberFormatException {
+        int arvosana = Integer.parseInt(arvosanaField.getText());
+        int nopat = Integer.parseInt(noppaField.getText());
+        
+        ValmisKurssi uusiKurssi = new ValmisKurssi(nimiField.getText(), arvosana, nopat, aikaField.getText());
+        
+        Ohjain.teeValmisKurssi(uusiKurssi);
     }
     
 }

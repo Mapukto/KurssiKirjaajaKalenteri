@@ -18,8 +18,8 @@ public class KurssilistaKuuntelija implements ActionListener {
     private final JButton poista;
     private final JButton uusi;
     private final JButton statistiikka;
-    private JList lista; 
-    private DefaultListModel listModel;
+    private final JList lista; 
+    private final DefaultListModel listModel;
     
     public KurssilistaKuuntelija(JButton kalenteriin, JButton poista, JButton uusi, JButton statistiikka, JList lista, DefaultListModel listModel) {
         this.kalenteriin = kalenteriin;
@@ -37,18 +37,22 @@ public class KurssilistaKuuntelija implements ActionListener {
         }
         
         if (ae.getSource() == poista) {
-            int index = lista.getSelectedIndex();
-            listModel.remove(index);
-
-            Ohjain.poistaKurssi(index);
-            
-            int koko = listModel.getSize();
-            if (koko == 0) poista.setEnabled(false);
+            poistaValittuKurssiListalta();
         }
         
         if (ae.getSource() == uusi) {
             UI.luoUusiValmisKurssiNakyma();
         }
+    }
+
+    private void poistaValittuKurssiListalta() {
+        int index = lista.getSelectedIndex();
+        listModel.remove(index);
+        
+        Ohjain.poistaValmisKurssi(index);
+        
+        int koko = listModel.getSize();
+        if (koko == 0) poista.setEnabled(false);
     }
     
 }

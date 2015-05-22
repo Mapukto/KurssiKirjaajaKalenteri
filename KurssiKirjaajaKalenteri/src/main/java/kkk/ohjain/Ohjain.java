@@ -26,7 +26,8 @@ public class Ohjain {
     static Lukija lukija;
     
     /**
-     * 
+     * Ohjelman alustus käynnistyksessä. Luodaan Kirjoittaja, Lukija, KurssiKanta ja Laskin.
+     * Kun kaikki on luotu, luetaan tiedostoon tallennetut kurssit ja käynnistetään UI.
      */
     public Ohjain() {
         kirjoittaja = new Kirjoittaja();
@@ -34,14 +35,22 @@ public class Ohjain {
         kk = new KurssiKanta();
         laskin = new Laskin();
         
-        lukija.lueKeskenOlevatKurssit();
-        
+        lueKurssit();
+    }
+    
+    public void run() {
         UI ui = new UI();
         ui.run();
     }
+    
+    private static void lueKurssit() {
+        lukija.lueKeskenOlevatKurssit();
+        lukija.lueValmiitKurssit();
+    }
 
-    public static void poistaKurssi(int index) {
+    public static void poistaValmisKurssi(int index) {
         kk.poistaValmisKurssi(index);
+        kirjoittaja.poistaKurssi(index);
     }
     
     public static List getKurssit() {
@@ -52,7 +61,14 @@ public class Ohjain {
         kk.lisaaKeskenOlevaKurssi(null);
     }
     
-    public static void teeValmisKurssi(ValmisKurssi kurssi) {
+    public static void tallennaTiedostostaValmisKurssi(ValmisKurssi kurssi) {
         kk.lisaaValmisKurssi(kurssi);
     }
+    
+    public static void teeValmisKurssi(ValmisKurssi kurssi) {
+        kk.lisaaValmisKurssi(kurssi);
+        kirjoittaja.tallennaValmisKurssi(kurssi);
+    }
+    
+    
 }

@@ -9,6 +9,7 @@ import kkk.ohjain.Ohjain;
  */
 public class Main {
     public static void main(String args[]) {
-        Ohjain ohjain = new Ohjain();    
+        Ohjain ohjain = new Ohjain();
+        ohjain.run();
     }
 }
