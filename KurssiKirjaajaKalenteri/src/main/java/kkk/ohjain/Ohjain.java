@@ -35,6 +35,11 @@ public class Ohjain {
         kk = new KurssiKanta();
         laskin = new Laskin();
         
+        String[] pva = {"ma", "ti", "ke", "pe"};
+        String[] ajat = {"9-10", "12-14", "14-16", "17-18"};
+        
+        kk.lisaaKeskenOlevaKurssi(new KaynnissaOlevaKurssi("OTM", new AikaVaraus(pva, ajat)));
+        
         lueKurssit();
     }
     
@@ -70,5 +75,7 @@ public class Ohjain {
         kirjoittaja.tallennaValmisKurssi(kurssi);
     }
     
-    
+    public static String onkoVarattu(int pva, int tunti) {
+        return kk.onkoVarattu(pva, tunti);
+    }
 }

@@ -13,7 +13,7 @@ import kkk.ohjain.Ohjain;
  */
 public final class KurssiKanta {
     private final List<ValmisKurssi> valmiitKurssit;
-    private final List<KaynnissaOlevaKurssi> keskenOlevatKurssit;
+    private final List<KaynnissaOlevaKurssi> kaynnissaOlevatKurssit;
     
     
     /**
@@ -23,19 +23,36 @@ public final class KurssiKanta {
      */
     public KurssiKanta() {
         this.valmiitKurssit = new ArrayList<>();
-        this.keskenOlevatKurssit = new ArrayList<>();
+        this.kaynnissaOlevatKurssit = new ArrayList<>();
     }
     
     public List<ValmisKurssi> getValmiitKurssit() {
         return this.valmiitKurssit;
     }
-
+    
+    public String onkoVarattu(int pva, int tunti) {
+        for (KaynnissaOlevaKurssi k : kaynnissaOlevatKurssit) {
+            if (k.onkoVarattu(pva, tunti)) return k.getNimi();
+        }
+        return null;
+    }
+    
+    
+    
+    
+    
+    
+    
+    /**
+     * "tietokantaa" muokkaavat metodit
+     * @param kurssi 
+     */
     public void lisaaValmisKurssi(ValmisKurssi kurssi) {
         valmiitKurssit.add(kurssi);
     }
     
     public void lisaaKeskenOlevaKurssi(KaynnissaOlevaKurssi kurssi) {
-        keskenOlevatKurssit.add(kurssi);
+        kaynnissaOlevatKurssit.add(kurssi);
     }
     
     public void poistaValmisKurssi(int index) {
@@ -43,11 +60,11 @@ public final class KurssiKanta {
     }
     
     public void poistaKeskenOlevaKurssi(int index) {
-        keskenOlevatKurssit.remove(index);
+        kaynnissaOlevatKurssit.remove(index);
     }
     
     public void poistaKaikkiKeskenOlevatKurssit() {
-        keskenOlevatKurssit.clear();
+        kaynnissaOlevatKurssit.clear();
     }
     
     
@@ -58,7 +75,7 @@ public final class KurssiKanta {
      * miten mockito toimii!
      */
     public KurssiKanta(List<KaynnissaOlevaKurssi> kesken, List<ValmisKurssi> valmiit) {
-        this.keskenOlevatKurssit = kesken;
+        this.kaynnissaOlevatKurssit = kesken;
         this.valmiitKurssit = valmiit;
     }
 }

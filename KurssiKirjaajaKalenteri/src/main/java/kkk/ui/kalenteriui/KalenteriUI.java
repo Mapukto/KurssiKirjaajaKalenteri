@@ -1,17 +1,17 @@
-
 package kkk.ui.kalenteriui;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
+import kkk.ohjain.Ohjain;
 
 /**
+ * Ei oikeasti edes ole kalenteri, vaan lukujärjestys aka lukkari! Luodaan
+ * kalenteriUI. Kalenteri koostuu otsikosta, kalenteriosiosta, jossa "soluja",
+ * jotka kuvaavat kutakin tuntia tiettynä päivänä ja napeista.
  *
  * @author mopo
  */
 public class KalenteriUI extends JPanel {
-
     
     public KalenteriUI() {
         this.add(teeKalenteri());
@@ -24,94 +24,111 @@ public class KalenteriUI extends JPanel {
         kalenteri.add(teeOtsikko(), BorderLayout.NORTH);
         kalenteri.add(lokerot(), BorderLayout.CENTER);
         kalenteri.add(teeNapit(), BorderLayout.SOUTH);
-        
+
         return kalenteri;
     }
-    
-    
+
     private JPanel lokerot() {
-         JPanel paivaPanel = new JPanel();
-         paivaPanel.setLayout(new GridLayout(0,6));
-         
-         String[] viikonPvt = {"alkaen","maanantai", "tiistai", "keskiviikko", "torstai", "perjantai"};
-         
-         for (int i = 0; i < 6; i++) {
+        JPanel paivaPanel = new JPanel();
+        paivaPanel.setLayout(new GridLayout(0, 6));
+
+        String[] viikonPvt = {"Aika", "maanantai", "tiistai", "keskiviikko", "torstai", "perjantai"};
+
+        for (int i = 0; i < 6; i++) {
             JPanel pva = new JPanel();
             pva.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            JLabel pvaNimi = new JLabel(viikonPvt[i]); 
+            JLabel pvaNimi = new JLabel(viikonPvt[i]);
             pva.add(pvaNimi);
             paivaPanel.add(pva);
         }
-         
-        String[] ajat = {"9", "10" ,"11", "12", "13", "14", "15", "16", "17", "18"};
+
+        String[] ajat = {"9 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19"};
         int aikaIndex = 0;
-        
+
+        int pvaIndex = 1;
+
+        /**
+         * Luodaan kalenteriin taulukko. Riveissä ajat[aikaIndex] eli tunnit.
+         * Sarakkeissa päivät ma - pe numeroituna 1 - 5 pvaIndexiin. onkoVarattu
+         * -metodi saa parametrikseen aikaIndex + 8, eli sillä hetkellä
+         * käsittelyssä olevan tunnin. Jos tunti on varattuna, lisätään soluun
+         * lukemaan kyseisen kurssin nimi.
+         */
         for (int i = 0; i < 60; i++) {
             JPanel lokero = new JPanel();
             lokero.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             JLabel onkoVarattu = new JLabel();
-            
-            
+
             if (i % 6 == 0) {
                 onkoVarattu.setText(ajat[aikaIndex]);
                 aikaIndex++;
             } else {
                 lokero.setBackground(Color.WHITE);
-                if (onkoVarattu(i)) {
+                
+                String varatunKurssinNimi = onkoVarattu(pvaIndex, (aikaIndex + 8));
+                
+                if (varatunKurssinNimi != null) {
                     lokero.setBackground(Color.RED);
-                    onkoVarattu.setText("");
+                    onkoVarattu.setText(varatunKurssinNimi);
                 }
+
+                pvaIndex = paivitaPvaIndex(pvaIndex);
             }
-            
+
             lokero.add(onkoVarattu);
             paivaPanel.add(lokero);
-            
         }
-        
+
         return paivaPanel;
     }
 
     /**
-     * oikea päivä löytyy tarkastamalla onko (index - pvanumero) % 6 == 0.
-     * @param index
-     * @return 
+     * pidetään kirjaa missä päivässä ollaan menossa
      */
-    private boolean onkoVarattu(int index) {
-        if ((index - 3) % 6 == 0) {
-            return true;
+    private int paivitaPvaIndex(int pvaIndex) {
+        int uusiPva = pvaIndex;
+
+        if (uusiPva < 5) {
+            uusiPva++;
+        } else {
+            uusiPva = 1;
         }
-        
-        return false;
+
+        return uusiPva;
     }
 
-    
+    private String onkoVarattu(int pva, int tunti) {
+        return Ohjain.onkoVarattu(pva, tunti);
+    }
+
     private JPanel teeOtsikko() {
         JPanel otsikkoLokero = new JPanel();
         otsikkoLokero.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        
+
         JLabel otsikko = new JLabel("Kalenterinäkymä");
         otsikko.setForeground(Color.BLACK);
-        
+
         otsikkoLokero.add(otsikko, BorderLayout.CENTER);
-        
+
         return otsikkoLokero;
     }
-    
-    JButton nappi;
 
     private JPanel teeNapit() {
         JPanel nappiLokero = new JPanel();
-        
+
         JButton kurssinHallintaan = new JButton("Kurssienhallintaan");
-        nappi = kurssinHallintaan;
-        nappiLokero.add(kurssinHallintaan, BorderLayout.CENTER);
-        
+        nappiLokero.add(kurssinHallintaan);
+
+        JButton uusiKurssi = new JButton("Uusi kurssi");
+        nappiLokero.add(uusiKurssi);
+
         KalenteriKuuntelija kuuntelija = new KalenteriKuuntelija(kurssinHallintaan);
         kurssinHallintaan.addActionListener(kuuntelija);
-        
+        uusiKurssi.addActionListener(kuuntelija);
+
         return nappiLokero;
     }
-    
+
 }
 
 //    private JPanel kalenteriUI() {
