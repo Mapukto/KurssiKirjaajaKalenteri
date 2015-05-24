@@ -21,40 +21,40 @@ public class AikaVaraus {
     }
     
     /**
-     * luo hashmapin, jossa avaimena päivä ja arvona vastaavan päivän varattuna
+     * luo hashmap -palasen, jossa avaimena päivä ja arvona vastaavan päivän varattuna
      * olevat tunnit
      */
     private void teePva() {
         for (int i = 0; i < rawPvat.length; i++) {
             if (rawPvat[i].equals("ma") || rawPvat[i].equals("1")) {
                 if (!aikaMap.containsKey(1)) {
-                    aikaMap.put(1, new HashSet<Integer>());
-                    laitaTunnit(1, rawAjat[i]);
+                    luoPva(1, i);
                 }
             } else if (rawPvat[i].equals("ti") || rawPvat[i].equals("2")) {
                 if (!aikaMap.containsKey(2)) {
-                    aikaMap.put(2, new HashSet<Integer>());
-                    laitaTunnit(2, rawAjat[i]);
+                    luoPva(2, i);
                 }
             } else if (rawPvat[i].equals("ke") || rawPvat[i].equals("3")) {
                 if (!aikaMap.containsKey(3)) {
-                    aikaMap.put(3, new HashSet<Integer>());
-                    laitaTunnit(3, rawAjat[i]);
+                    luoPva(3, i);
                 }
             } else if (rawPvat[i].equals("to") || rawPvat[i].equals("4")) {
                 if (!aikaMap.containsKey(4)) {
-                    aikaMap.put(4, new HashSet<Integer>());
-                    laitaTunnit(4, rawAjat[i]);
+                    luoPva(4, i);
                 }
             } else if (rawPvat[i].equals("pe") || rawPvat[i].equals("5")) {
                 if (!aikaMap.containsKey(5)) {
-                    aikaMap.put(5, new HashSet<Integer>());
-                    laitaTunnit(5, rawAjat[i]);
+                    luoPva(5, i);
                 }
             } else {
                 System.out.println("Ei kelpaa");
             }
         }
+    }
+
+    private void luoPva(int nro, int i) {
+        aikaMap.put(nro, new HashSet<Integer>());
+        laitaTunnit(nro, rawAjat[i]);
     }
 
     public HashMap<Integer, HashSet<Integer>> getAikaMap() {
