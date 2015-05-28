@@ -16,6 +16,9 @@ public class UI implements Runnable {
     private static JFrame frame;
     private static Container c;
 
+    public static JFrame getFrame() {
+        return frame;
+    }
     
     /**
      * luodaan frame ja etusivuksi kalenterinÃƒÂ¤kymÃƒÂ¤
@@ -82,6 +85,10 @@ public class UI implements Runnable {
         
         c.validate();
         frame.pack();
+    }
+    
+    public static void luoUusiKaynnissaOlevaKurssiNakyma() {
+        
     }
     
     private static void muutaNakyma(JPanel panel) {

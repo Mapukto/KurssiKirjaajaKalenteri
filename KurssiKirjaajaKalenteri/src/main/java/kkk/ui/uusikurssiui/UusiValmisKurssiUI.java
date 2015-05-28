@@ -39,7 +39,7 @@ public class UusiValmisKurssiUI extends JPanel {
     
     private JPanel teeInput() {
         JPanel lomake = new JPanel();
-        lomake.setLayout(new GridLayout(11, 1));
+        lomake.setLayout(new GridLayout(9, 1));
         
         JLabel nimiLabel = new JLabel("Kurssin nimi:");
         JTextField nimiTFiel = new JTextField();

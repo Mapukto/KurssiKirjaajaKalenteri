@@ -41,7 +41,7 @@ public class KurssitUI extends JPanel {
      */
     private JLabel teeYlaOsa() {
         //45 15 15 10  "%-" + valiMaara + "s", s
-        String otsake = String.format("%-45s %-15s %-15s %-1s", "Kurssin nimi", "Arvosana", "Saadut nopat", "Suoritusaika");
+        String otsake = String.format("%-45s %-15s %-20s %-10s", "Kurssin nimi", "Arvosana", "Saadut nopat", "Suoritusaika");
         
         JLabel otsikko = new JLabel(otsake);
         
