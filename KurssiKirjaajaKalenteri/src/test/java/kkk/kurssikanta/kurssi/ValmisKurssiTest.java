@@ -32,7 +32,7 @@ public class ValmisKurssiTest {
     }
     
     @Test
-    public void toStringToimii() {
-        assertEquals("javaLabra 3 5 a", k.toString());
+    public void suoritusAikaToimii() {
+        assertEquals("a", k.getSuoritusAika());
     }
 }
