@@ -38,13 +38,31 @@ public class ValmisKurssi extends Kurssi {
     public String getNimi() {
         return super.getNimi();
     }
+    
+    StringBuilder ret;
+    
     /**
-     * TODO
+     * Metodi luo kurssista vakiomuotoisen String esityksen.
+     * kurssilistan pituus 145 char. Oikean laidan marginaali 20char. arvosanan ja noppien välissä 40 char.
+     * nimeen varattu 65char. nimen ja arvosanan väliin varattu 20char.
      * @return 
      */
     @Override
     public String toString() {
-        return super.toString() + " " + this.arvosana + " " + this.nopat + " " + this.suoritusAika;
+        ret = new StringBuilder();
+        
+        ret.append(appendSpaces(45, super.getNimi()));
+        
+        ret.append(appendSpaces(15, Integer.toString(this.arvosana)));
+        
+        ret.append(appendSpaces(15, Integer.toString(this.nopat)));
+        
+        ret.append(appendSpaces(10, this.suoritusAika));
+        
+        return ret.toString();
     }
-
+    
+    private String appendSpaces(int valiMaara, String s) {
+        return String.format("%-" + valiMaara + "s", s);
+    }
 }

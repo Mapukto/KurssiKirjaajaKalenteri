@@ -4,6 +4,7 @@ package kkk.ui.listaui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -13,6 +14,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import kkk.kurssikanta.kurssi.Kurssi;
 import kkk.ohjain.Ohjain;
 
@@ -38,7 +40,11 @@ public class KurssitUI extends JPanel {
      * @return 
      */
     private JLabel teeYlaOsa() {
-        JLabel otsikko = new JLabel();
+        //45 15 15 10  "%-" + valiMaara + "s", s
+        String otsake = String.format("%-45s %-15s %-15s %-1s", "Kurssin nimi", "Arvosana", "Saadut nopat", "Suoritusaika");
+        
+        JLabel otsikko = new JLabel(otsake);
+        
         return otsikko;
     }
     
@@ -53,6 +59,8 @@ public class KurssitUI extends JPanel {
         
         JScrollPane listScroller = new JScrollPane(kurssiLista);
         listScroller.setPreferredSize(new Dimension(700, 500));
+        
+        kurssiLista.setFont(new Font("monospaced", Font.PLAIN, 12));
         
         return listScroller;
     }
