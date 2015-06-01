@@ -8,13 +8,16 @@ import kkk.ui.UI;
 
 public class KalenteriKuuntelija implements ActionListener {
     private final JButton hallintaNappi;
+    private final JButton luoUusi;
     
     /**
      * 
      * @param kurssinHallintaan
+     * @param luoUusi
      */
-    public KalenteriKuuntelija(JButton kurssinHallintaan) {
+    public KalenteriKuuntelija(JButton kurssinHallintaan, JButton luoUusi) {
         this.hallintaNappi = kurssinHallintaan;
+        this.luoUusi = luoUusi;
     }
 
     /**
@@ -25,6 +28,9 @@ public class KalenteriKuuntelija implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == hallintaNappi) {
             UI.luoKurssiNakyma();
+        }
+        if (ae.getSource() == luoUusi) {
+            UI.luoUusiKaynnissaOlevaKurssiNakyma();
         }
     }
     

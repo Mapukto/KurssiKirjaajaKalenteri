@@ -23,7 +23,8 @@ public class UusiKaynnissaOlevaKurssiUI extends JPanel {
         JPanel lomake = new JPanel();
         lomake.setLayout(new BorderLayout());
         
-        lomake.add(teeOtsikko());
+        lomake.add(teeOtsikko(), BorderLayout.NORTH);
+        lomake.add(teeInput(), BorderLayout.CENTER);
         
         return lomake;
     }
@@ -43,13 +44,24 @@ public class UusiKaynnissaOlevaKurssiUI extends JPanel {
         panel.add(nimiLabel);
         panel.add(nimiTFiel);
         
-        JButton uusiAika = new JButton("Lisää aikavaraus");
+        panel.add(teeNapit(nimiTFiel));
         
+        return panel;
+    }
+
+    private JPanel teeNapit(JTextField nimiTFiel) {
+        JButton uusiAika = new JButton("Lisää aikavaraus");
         JButton peruuta = new JButton("Takaisin");
         JButton valmis = new JButton("Valmis");
         
         UusiKaynnissaOlevaKurssiKuuntelija kuuntelija = new UusiKaynnissaOlevaKurssiKuuntelija(nimiTFiel, uusiAika, peruuta, valmis);
         
-        return panel;
+        JPanel napit = new JPanel(new GridLayout(1,3));
+        
+        napit.add(uusiAika);
+        napit.add(peruuta);
+        napit.add(valmis);        
+        
+        return napit;
     }
 }

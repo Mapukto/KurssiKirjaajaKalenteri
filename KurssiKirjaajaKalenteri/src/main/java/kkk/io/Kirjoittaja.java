@@ -89,6 +89,10 @@ public class Kirjoittaja {
         return kirjoitusAsu.toString();
     }
 
+    /**
+     * ei toimi
+     * @param index 
+     */
     public void poistaKurssi(int index) {
         try {
             luoValmiitWriter(false);

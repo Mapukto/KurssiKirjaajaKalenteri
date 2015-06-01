@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 import kkk.ui.kalenteriui.KalenteriUI;
 import kkk.ui.listaui.KurssitUI;
+import kkk.ui.uusikurssiui.UusiKaynnissaOlevaKurssiUI;
 import kkk.ui.uusikurssiui.UusiValmisKurssiUI;
 
 /**
@@ -88,7 +89,15 @@ public class UI implements Runnable {
     }
     
     public static void luoUusiKaynnissaOlevaKurssiNakyma() {
+        UusiKaynnissaOlevaKurssiUI uusiKurssi = new UusiKaynnissaOlevaKurssiUI();
         
+        c.removeAll();
+        c.repaint();
+        
+        c.add(uusiKurssi);
+        
+        c.validate();
+        frame.pack();
     }
     
     private static void muutaNakyma(JPanel panel) {
