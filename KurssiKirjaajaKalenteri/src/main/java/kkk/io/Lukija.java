@@ -32,10 +32,14 @@ public class Lukija {
             
             String nimi = palat[0];
             
+            String nickName = palat[1];
+            
+            String luokka = palat[2];
+            
             int paivaIndex = 0;
             int aikaIndex = 0;
             
-            for (int i = 1; i < palat.length; i++) {
+            for (int i = 3; i < palat.length; i++) {
                 if (i % 2 != 0) {
                     paivat[paivaIndex] = palat[i];
                     paivaIndex++;
@@ -45,7 +49,7 @@ public class Lukija {
                 }
             }
             
-            KaynnissaOlevaKurssi newKurssi = new KaynnissaOlevaKurssi(nimi, new AikaVaraus(paivat, ajat));
+            KaynnissaOlevaKurssi newKurssi = new KaynnissaOlevaKurssi(nimi, nickName, new AikaVaraus(paivat, ajat));
             Ohjain.teeKeskenErainenKurssi(newKurssi);
         }
     }

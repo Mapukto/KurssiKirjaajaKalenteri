@@ -30,9 +30,9 @@ public final class KurssiKanta {
         return this.valmiitKurssit;
     }
     
-    public String onkoVarattu(int pva, int tunti) {
+    public KaynnissaOlevaKurssi onkoVarattu(int pva, int tunti) {
         for (KaynnissaOlevaKurssi k : kaynnissaOlevatKurssit) {
-            if (k.onkoVarattu(pva, tunti)) return k.getNimi();
+            if (k.onkoVarattu(pva, tunti)) return k;
         }
         return null;
     }

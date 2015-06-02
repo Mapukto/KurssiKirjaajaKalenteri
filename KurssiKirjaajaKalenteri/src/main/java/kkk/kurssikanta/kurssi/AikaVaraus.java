@@ -26,23 +26,23 @@ public class AikaVaraus {
      */
     private void teePva() {
         for (int i = 0; i < rawPvat.length; i++) {
-            if (rawPvat[i].equals("ma") || rawPvat[i].equals("1")) {
+            if (rawPvat[i].equals("maanantai") || rawPvat[i].equals("1")) {
                 if (!aikaMap.containsKey(1)) {
                     luoPva(1, i);
                 }
-            } else if (rawPvat[i].equals("ti") || rawPvat[i].equals("2")) {
+            } else if (rawPvat[i].equals("tiistai") || rawPvat[i].equals("2")) {
                 if (!aikaMap.containsKey(2)) {
                     luoPva(2, i);
                 }
-            } else if (rawPvat[i].equals("ke") || rawPvat[i].equals("3")) {
+            } else if (rawPvat[i].equals("keskiviikko") || rawPvat[i].equals("3")) {
                 if (!aikaMap.containsKey(3)) {
                     luoPva(3, i);
                 }
-            } else if (rawPvat[i].equals("to") || rawPvat[i].equals("4")) {
+            } else if (rawPvat[i].equals("torstai") || rawPvat[i].equals("4")) {
                 if (!aikaMap.containsKey(4)) {
                     luoPva(4, i);
                 }
-            } else if (rawPvat[i].equals("pe") || rawPvat[i].equals("5")) {
+            } else if (rawPvat[i].equals("perjantai") || rawPvat[i].equals("5")) {
                 if (!aikaMap.containsKey(5)) {
                     luoPva(5, i);
                 }

@@ -2,6 +2,7 @@ package kkk.ui.kalenteriui;
 
 import java.awt.*;
 import javax.swing.*;
+import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.ohjain.Ohjain;
 
 /**
@@ -65,11 +66,12 @@ public class KalenteriUI extends JPanel {
             } else {
                 lokero.setBackground(Color.WHITE);
                 
-                String varatunKurssinNimi = onkoVarattu(pvaIndex, (aikaIndex + 8));
+                KaynnissaOlevaKurssi varattuKurssi = onkoVarattu(pvaIndex, (aikaIndex + 8));
                 
-                if (varatunKurssinNimi != null) {
+                if (varattuKurssi != null) {
                     lokero.setBackground(Color.RED);
-                    onkoVarattu.setText(varatunKurssinNimi);
+                    onkoVarattu.setText(varattuKurssi.getNickName());
+                    onkoVarattu.setToolTipText(varattuKurssi.getNimi());
                 }
 
                 pvaIndex = paivitaPvaIndex(pvaIndex);
@@ -97,7 +99,7 @@ public class KalenteriUI extends JPanel {
         return uusiPva;
     }
 
-    private String onkoVarattu(int pva, int tunti) {
+    private KaynnissaOlevaKurssi onkoVarattu(int pva, int tunti) {
         return Ohjain.onkoVarattu(pva, tunti);
     }
 

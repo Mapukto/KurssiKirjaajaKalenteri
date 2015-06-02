@@ -21,14 +21,15 @@ public class Kirjoittaja {
 
     /**
      * tallennetaan valmis kurssi tiedostoon
+     *
      * @param kurssi tallennettava kurssi
      */
     public void tallennaValmisKurssi(ValmisKurssi kurssi) {
         try {
             luoValmiitWriter(true);
-            
+
             String kurssiTiedot = kurssi.getNimi() + "/" + kurssi.getArvosana() + "/" + kurssi.getNopat() + "/" + kurssi.getSuoritusAika();
-            
+
             valmiitWriter.write(kurssiTiedot);
             valmiitWriter.newLine();
             valmiitWriter.close();
@@ -42,15 +43,16 @@ public class Kirjoittaja {
     }
 
     /**
-     * tallennetaan keskeneräinen kurssi
+     * kesken eräisen kurssin tallennus tiedostoon
+     *
      * @param kurssi tallennettava kurssi
      */
     public void tallennaKeskenErainenKurssi(KaynnissaOlevaKurssi kurssi) {
         try {
             luoKeskenWriter(true);
-            
+
             /**
-             * kirjoitusasu: Kurssin nimi/pva1/aika1/pva2/aika2/...../pvaN/aikaN
+             *
              */
             String ajatKirjoitusAsussa = teeAjatKirjoitusAsu(kurssi);
 
@@ -67,14 +69,19 @@ public class Kirjoittaja {
     }
 
     /**
-     * tehdään keskeneräisen kurssin kirjoitusasu muotoon Kurssin nimi/pva1/aika1/pva2/aika2/...../pvaN/aikaN
+     * tehdään keskeneräisen kurssin kirjoitusasu muotoon Kurssin
+     * nimi/lyhennetty nimi/luokka huone/pva1/aika1/pva2/aika2/...../pvaN/aikaN
+     *
      * @param kurssi tallennettava kurssi
      * @return tallennettava String
      */
     private String teeAjatKirjoitusAsu(KaynnissaOlevaKurssi kurssi) {
-        StringBuilder kirjoitusAsu = new StringBuilder(kurssi.getNimi());
+        StringBuilder kirjoitusAsu = new StringBuilder();
         AikaVaraus ajat = kurssi.getAikaVaraukset();
         HashMap<Integer, HashSet<Integer>> aikaMap = ajat.getAikaMap();
+
+        kirjoitusAsu.append(kurssi.getNimi()).append("/");
+        kirjoitusAsu.append(kurssi.getNickName()).append("/");
 
         for (int i = 1; i < 6; i++) {
             if (!aikaMap.containsKey(i)) {
@@ -91,19 +98,20 @@ public class Kirjoittaja {
 
     /**
      * ei toimi
-     * @param index 
+     *
+     * @param index
      */
     public void poistaKurssi(int index) {
         try {
             luoValmiitWriter(false);
             luoScanner("src/main/java/kkk/io/valmiit.txt");
-            
+
             for (int i = 0; i < index; i++) {
                 String oneLine = sc.nextLine();
                 valmiitWriter.write(oneLine);
                 valmiitWriter.newLine();
             }
-            
+
             valmiitWriter.write("");
             valmiitWriter.close();
         } catch (Exception e) {

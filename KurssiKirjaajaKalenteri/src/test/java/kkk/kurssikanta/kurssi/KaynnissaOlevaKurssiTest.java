@@ -23,7 +23,7 @@ public class KaynnissaOlevaKurssiTest {
         String[] päivät = {"ma"};
         String[] ajat = {"10-12"};
         
-        k = new KaynnissaOlevaKurssi("kurssi1", new AikaVaraus(päivät, ajat));
+        k = new KaynnissaOlevaKurssi("kurssi1", "k1", new AikaVaraus(päivät, ajat));
     }
     
     @Test
