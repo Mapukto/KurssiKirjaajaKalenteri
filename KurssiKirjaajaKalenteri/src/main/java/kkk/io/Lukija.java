@@ -69,7 +69,7 @@ public class Lukija {
             String[] palat = oneLine.split("/");
             
             String nimi = palat[0];
-            int arvosana = Integer.parseInt(palat[1]);
+            String arvosana = palat[1];
             int nopat = Integer.parseInt(palat[2]);
             String aika = palat[3];
             

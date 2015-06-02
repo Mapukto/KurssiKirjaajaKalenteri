@@ -44,7 +44,7 @@ class UusiValmisKurssiKuuntelija implements ActionListener {
     }
 
     private void luoUusiValmisKurssi() throws NumberFormatException {
-        int arvosana = Integer.parseInt(arvosanaField.getText());
+        String arvosana = arvosanaField.getText();
         int nopat = Integer.parseInt(noppaField.getText());
         
         ValmisKurssi uusiKurssi = new ValmisKurssi(nimiField.getText(), arvosana, nopat, aikaField.getText());

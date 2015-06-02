@@ -8,17 +8,17 @@ package kkk.kurssikanta.kurssi;
  */
 public class ValmisKurssi extends Kurssi {
     private final int nopat;
-    private final int arvosana;
+    private final String arvosana;
     private final String suoritusAika;
 
-    public ValmisKurssi(String nimi, int arvosana, int nopat, String suoritusAika) {
+    public ValmisKurssi(String nimi, String arvosana, int nopat, String suoritusAika) {
         super(nimi);
         this.nopat = nopat;
         this.arvosana = arvosana;
         this.suoritusAika = suoritusAika;
     }
     
-    public int getArvosana() {
+    public String getArvosana() {
         return arvosana;
     }
     
@@ -61,7 +61,7 @@ public class ValmisKurssi extends Kurssi {
 //        
 //        return ret.toString();
         
-        String tulos = String.format("%-45s %-15s %-15s %-10s", super.getNimi(), Integer.toString(this.arvosana), Integer.toString(this.nopat), this.suoritusAika);
+        String tulos = String.format("%-45s %-15s %-15s %-10s", super.getNimi(), this.arvosana, Integer.toString(this.nopat), this.suoritusAika);
         return tulos;
     }
     

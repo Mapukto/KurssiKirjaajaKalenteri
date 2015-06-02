@@ -21,14 +21,14 @@ public class ValmisKurssiTest {
     
     @Before
     public void setUp() {
-        k = new ValmisKurssi("javaLabra", 3,5,"a");
+        k = new ValmisKurssi("javaLabra", "3",5,"a");
     }
     
     @Test
     public void getteritToimii() {
         assertEquals("javaLabra", k.getNimi());
         assertEquals(5, k.getNopat());
-        assertEquals(3, k.getArvosana());
+        assertEquals("3", k.getArvosana());
     }
     
     @Test

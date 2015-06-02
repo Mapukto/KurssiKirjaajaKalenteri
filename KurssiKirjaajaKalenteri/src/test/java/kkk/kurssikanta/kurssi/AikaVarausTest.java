@@ -17,7 +17,7 @@ public class AikaVarausTest {
     
     @Before
     public void setUp() {
-        String[] pvat = {"ma", "ti", "ke", "pe"};
+        String[] pvat = {"maanantai", "tiistai", "keskiviikko", "perjantai"};
         String[] ajat = {"9-10", "12-14", "14-16", "17-18"};
         
         av = new AikaVaraus(pvat, ajat);

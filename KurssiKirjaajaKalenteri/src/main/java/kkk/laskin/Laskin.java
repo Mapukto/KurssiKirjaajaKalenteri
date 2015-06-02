@@ -12,16 +12,20 @@ public class Laskin {
 
     private List<ValmisKurssi> kurssit;
     private double ka;
-    private int nopatYht;
+    private int kaLaskettavatNopat;
     private int kurssitYht;
     private double painotettuKa;
+    private int nopatYht;
+    private int kaKurssitYht;
 
     public Laskin() {
         this.kurssit = Ohjain.getKurssit();
         this.kurssitYht = kurssit.size();
-        this.nopatYht = laskeNopat();
+        this.kaLaskettavatNopat = laskeKaKaytettavatNopat();
         this.ka = laskeKa();
         this.painotettuKa = laskePainotettuKa();
+        this.nopatYht = laskeNopat();
+        this.kaKurssitYht = laskeKaKurssit();
     }
     
     public int getKurssitYht() {
@@ -39,24 +43,44 @@ public class Laskin {
     public int getNopat() {
         return nopatYht;
     }
-
+    
+    private int laskeKaKurssit() {
+        int kurssiMaara = 0;
+        
+        for (ValmisKurssi k : kurssit) {
+            if (!k.getArvosana().toLowerCase().equals("hyv")) kurssiMaara++;
+        }
+        
+        return kurssiMaara;
+    }
+    
     private double laskePainotettuKa() {
         double pKa = 0;
 
         for (ValmisKurssi k : kurssit) {
-            int potti = k.getArvosana();
+            if (k.getArvosana().toLowerCase().equals("hyv")) continue;
+            int potti = Integer.parseInt(k.getArvosana());
             potti *= k.getNopat();
             pKa += potti;
         }
 
-        if (nopatYht != 0) {
-            pKa /= nopatYht;
+        if (kaLaskettavatNopat != 0) {
+            pKa /= kaLaskettavatNopat;
             return (double) Math.round(pKa * 10)/10;
         } else {
             return 0;
         }
     }
 
+    private int laskeKaKaytettavatNopat() {
+        int nopat = 0;
+        for (ValmisKurssi k : kurssit) {
+            if (k.getArvosana().toLowerCase().equals("hyv")) continue;
+            nopat += k.getNopat();
+        }
+        return nopat;
+    }
+    
     private int laskeNopat() {
         int nopat = 0;
         for (ValmisKurssi k : kurssit) {
@@ -69,11 +93,12 @@ public class Laskin {
         double keskiarvo = 0.0;
 
         for (ValmisKurssi k : kurssit) {
-            keskiarvo += k.getArvosana();   
+            if (k.getArvosana().toLowerCase().equals("hyv")) continue;
+            keskiarvo += Integer.parseInt(k.getArvosana());
         }
 
-        if (kurssitYht != 0) {
-            keskiarvo /= kurssitYht;
+        if (kaKurssitYht != 0) {
+            keskiarvo /= kaKurssitYht;
             return (double) Math.round(keskiarvo*10)/10;
         } else {
             return 0;
@@ -90,8 +115,11 @@ public class Laskin {
     public Laskin(List<ValmisKurssi> paramKurssit) {
         this.kurssit = paramKurssit;
         this.kurssitYht = kurssit.size();
+        this.kaLaskettavatNopat = laskeKaKaytettavatNopat();
         this.ka = laskeKa();
-        this.nopatYht = laskeNopat();
         this.painotettuKa = laskePainotettuKa();
+        this.nopatYht = laskeNopat();
+        this.kaKurssitYht = laskeKaKurssit();
+        System.out.println(kaKurssitYht);
     }
 }

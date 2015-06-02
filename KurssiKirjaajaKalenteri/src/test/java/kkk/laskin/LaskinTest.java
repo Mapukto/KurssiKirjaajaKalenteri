@@ -34,10 +34,11 @@ public class LaskinTest {
         
         List<ValmisKurssi> kurssiLista = new ArrayList<>();
 
-        kurssiLista.add(new ValmisKurssi("testiKurssi", 1, 5, "a"));
-        kurssiLista.add(new ValmisKurssi("testiKurssi2", 2, 5, "a"));
-        kurssiLista.add(new ValmisKurssi("testiKurssi3", 3, 5, "a"));
-        kurssiLista.add(new ValmisKurssi("testiKurssi3", 3, 1, "a"));
+        kurssiLista.add(new ValmisKurssi("testiKurssi", "1", 5, "a"));
+        kurssiLista.add(new ValmisKurssi("testiKurssi2", "2", 5, "a"));
+        kurssiLista.add(new ValmisKurssi("testiKurssi3", "3", 5, "a"));
+        kurssiLista.add(new ValmisKurssi("testiKurssi4", "3", 1, "a"));
+        kurssiLista.add(new ValmisKurssi("testiKurssi5", "hyv", 1, "a"));
 
         laskin = new Laskin(kurssiLista);
     }
@@ -54,12 +55,12 @@ public class LaskinTest {
     
     @Test
     public void nopatLasketaanOikein() {
-        assertEquals(16, laskin.getNopat());
+        assertEquals(17, laskin.getNopat());
     }
     
     @Test
     public void kurssienKokonaisMaaraLasketaanOikein() {
-        assertEquals(4, laskin.getKurssitYht());
+        assertEquals(5, laskin.getKurssitYht());
     }
     
     @Test
