@@ -30,7 +30,7 @@ public class KurssiKantaTest {
         String[] ajat = {"9-10", "12-14", "14-16", "17-18"};
         
         keskenEraiset.add(new KaynnissaOlevaKurssi("javaLabra", "JL", new AikaVaraus(pvat, ajat)));
-        valmiit.add(new ValmisKurssi("javaLabra", 5, 5, "a"));
+        valmiit.add(new ValmisKurssi("javaLabra", "5", 5, "a"));
         
         kk = new KurssiKanta(keskenEraiset, valmiit);
     }
