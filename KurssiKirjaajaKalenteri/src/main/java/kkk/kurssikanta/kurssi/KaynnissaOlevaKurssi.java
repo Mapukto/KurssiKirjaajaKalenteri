@@ -1,7 +1,7 @@
 package kkk.kurssikanta.kurssi;
 
 /**
- *
+ * 
  * @author mopo
  */
 public class KaynnissaOlevaKurssi extends Kurssi {
@@ -18,7 +18,7 @@ public class KaynnissaOlevaKurssi extends Kurssi {
         super(nimi);
         this.ajat = ajat;
         this.nickName = nickName;
-    }
+    } 
     
     public String getNickName() {
         return this.nickName;

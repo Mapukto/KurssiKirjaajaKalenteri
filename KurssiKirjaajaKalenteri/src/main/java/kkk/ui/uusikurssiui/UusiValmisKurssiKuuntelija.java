@@ -34,8 +34,14 @@ class UusiValmisKurssiKuuntelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == submit) {
-            luoUusiValmisKurssi();
-            UI.luoKurssiNakyma();
+            try {
+                luoUusiValmisKurssi();
+                UI.luoKurssiNakyma();
+            } catch (Exception e) {
+                UI.virheDialog("Kurssin tiedot virheellisiä. Kurssia ei tallennettu \n" + e.getMessage());
+            }
+            
+            tyhjennaSyote();
         }
         
         if (ae.getSource() == back) {
@@ -43,13 +49,26 @@ class UusiValmisKurssiKuuntelija implements ActionListener {
         }
     }
 
-    private void luoUusiValmisKurssi() throws NumberFormatException {
+    private void luoUusiValmisKurssi() throws NumberFormatException, Exception {
+        tarkastaInput();
+        
         String arvosana = arvosanaField.getText();
+        
         int nopat = Integer.parseInt(noppaField.getText());
         
         ValmisKurssi uusiKurssi = new ValmisKurssi(nimiField.getText(), arvosana, nopat, aikaField.getText());
         
         Ohjain.teeValmisKurssi(uusiKurssi);
+    }
+
+    private void tyhjennaSyote() {
+        noppaField.setText("");
+    }
+
+    private void tarkastaInput() throws Exception {
+        if (nimiField.getText().equals("")) throw new Exception("Kurssin nimeä ei ole syötetty");
+        if (aikaField.getText().equals("")) throw new Exception("Kurssin suoritusaikaa ei ole syötetty");
+        if (arvosanaField.getText().equals("")) throw new Exception("Arvosanaa ei ole syötetty");
     }
     
 }

@@ -1,4 +1,3 @@
-
 package kkk.ui.uusikurssiui;
 
 import java.awt.event.ActionEvent;
@@ -18,12 +17,13 @@ import kkk.ui.UI;
  * @author maot
  */
 public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
+
     private final JButton uusiAika, peruuta, valmis;
     private final JTextField nimi;
     private final JTextField lyhenneTF;
     private final JTextField aikaTF;
     private final JComboBox paivaValikko;
-    
+
     private final ArrayList<String> paivaTaulu;
     private final ArrayList<String> aikaTaulu;
 
@@ -44,50 +44,70 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
         if (ae.getSource() == peruuta) {
             UI.luoKalenteriNakyma();
         }
-        
+
         if (ae.getSource() == uusiAika) {
-            tallennaAjatTauluihin();
-            aikaTF.setText("");
-            paivaValikko.setSelectedIndex(0);
+            try {
+                tallennaAjatTauluihin();
+                aikaTF.setText("");
+                paivaValikko.setSelectedIndex(0);
+            } catch (Exception e) {
+                UI.virheDialog(e.getMessage());
+            }
+
         }
-        
+
         if (ae.getSource() == valmis) {
-            teeUusiKaynnissaOlevaKurssi();
-            aikaTaulu.clear();
-            paivaTaulu.clear();
-            UI.luoKalenteriNakyma();
+            try {
+                teeUusiKaynnissaOlevaKurssi();
+                aikaTaulu.clear();
+                paivaTaulu.clear();
+                UI.luoKalenteriNakyma();
+            } catch (Exception e) {
+                UI.virheDialog(e.getMessage());
+            }
+
         }
     }
 
-    private void tallennaAjatTauluihin() {
+    private void tallennaAjatTauluihin() throws Exception {
         String[] ajat = aikaTF.getText().split("-");
-        
-        if (tarkastaAjat(ajat)) {
-            paivaTaulu.add((String) paivaValikko.getSelectedItem());
-            aikaTaulu.add(aikaTF.getText());
-        } else {
-            System.out.println("UusiKaynnissaOlevaKurssiKuuntelija syöte väärin");
+
+        if (!tarkastaAjat(ajat)) {
+            throw new Exception("Syötetyt ajat ovat virheellisiä.\nAikaa ei tallennettu\nAikojen tulee olla tuntien 9 ja 18 välillä.");
         }
+
+        paivaTaulu.add((String) paivaValikko.getSelectedItem());
+        aikaTaulu.add(aikaTF.getText());
+
     }
-    
-    private void teeUusiKaynnissaOlevaKurssi() {
+
+    private void teeUusiKaynnissaOlevaKurssi() throws Exception {
         String[] paivat = new String[paivaTaulu.size()];
         String[] ajat = new String[paivaTaulu.size()];
         
+        tarkastaInput(nimi.getText(), lyhenneTF.getText(), paivat);
+
         AikaVaraus varaukset = new AikaVaraus(paivaTaulu.toArray(paivat), aikaTaulu.toArray(ajat));
         KaynnissaOlevaKurssi uusiKurssi = new KaynnissaOlevaKurssi(this.nimi.getText(), this.lyhenneTF.getText(), varaukset);
-        
+
         Ohjain.teeKeskenErainenKurssi(uusiKurssi);
     }
-    
+
     private boolean tarkastaAjat(String[] ajat) {
         try {
             int alku = Integer.parseInt(ajat[0]);
             int loppu = Integer.parseInt(ajat[1]);
-            
+
             return alku > 8 && alku < 18 && loppu < 19 && loppu > 9;
         } catch (Exception e) {
             return false;
         }
+    }
+
+    private void tarkastaInput(String nimi, String lyhenne, String[] taulu) throws Exception {
+        if (nimi.equals("")) throw new Exception("Nimeä ei ole syötetty");
+        if (lyhenne.equals("")) throw new Exception("Lyhennettä ei ole syötetty");
+        if (lyhenne.length() > 10) throw new Exception("Lyhenne on liian pitkä. Keksi lyhyempi!");
+        if (taulu.length == 0) throw new Exception("Aikavarauksia ei ole tehty!");
     }
 }

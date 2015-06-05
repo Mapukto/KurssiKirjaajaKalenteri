@@ -11,40 +11,28 @@ import kkk.ohjain.Ohjain;
 public class Laskin {
 
     private List<ValmisKurssi> kurssit;
-    private double ka;
-    private int kaLaskettavatNopat;
-    private int kurssitYht;
-    private double painotettuKa;
-    private int nopatYht;
-    private int kaKurssitYht;
 
     public Laskin() {
         this.kurssit = Ohjain.getKurssit();
-        this.kurssitYht = kurssit.size();
-        this.kaLaskettavatNopat = laskeKaKaytettavatNopat();
-        this.ka = laskeKa();
-        this.painotettuKa = laskePainotettuKa();
-        this.nopatYht = laskeNopat();
-        this.kaKurssitYht = laskeKaKurssit();
     }
     
     public int getKurssitYht() {
-        return kurssitYht;
+        return kurssit.size();
     }
 
     public double getKa() {
-        return ka;
+        return laskeKa();
     }
 
     public double getPainotettuKa() {
-        return painotettuKa;
+        return laskePainotettuKa();
     }
 
     public int getNopat() {
-        return nopatYht;
+        return laskeNopat();
     }
     
-    private int laskeKaKurssit() {
+    private int laskeKeskiarvossaKaytettavatKurssit() {
         int kurssiMaara = 0;
         
         for (ValmisKurssi k : kurssit) {
@@ -63,6 +51,8 @@ public class Laskin {
             potti *= k.getNopat();
             pKa += potti;
         }
+        
+        int kaLaskettavatNopat = laskeKaKaytettavatNopat();
 
         if (kaLaskettavatNopat != 0) {
             pKa /= kaLaskettavatNopat;
@@ -96,7 +86,9 @@ public class Laskin {
             if (k.getArvosana().toLowerCase().equals("hyv")) continue;
             keskiarvo += Integer.parseInt(k.getArvosana());
         }
-
+        
+        int kaKurssitYht = laskeKeskiarvossaKaytettavatKurssit();
+        
         if (kaKurssitYht != 0) {
             keskiarvo /= kaKurssitYht;
             return (double) Math.round(keskiarvo*10)/10;
@@ -114,12 +106,5 @@ public class Laskin {
      */
     public Laskin(List<ValmisKurssi> paramKurssit) {
         this.kurssit = paramKurssit;
-        this.kurssitYht = kurssit.size();
-        this.kaLaskettavatNopat = laskeKaKaytettavatNopat();
-        this.ka = laskeKa();
-        this.painotettuKa = laskePainotettuKa();
-        this.nopatYht = laskeNopat();
-        this.kaKurssitYht = laskeKaKurssit();
-        System.out.println(kaKurssitYht);
     }
 }

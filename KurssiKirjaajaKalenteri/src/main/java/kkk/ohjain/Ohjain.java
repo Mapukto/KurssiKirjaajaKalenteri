@@ -48,6 +48,12 @@ public class Ohjain {
         ui.run();
     }
     
+    public static void tyhjennaKalenteri() {
+        kk.poistaKaikkiKeskenOlevatKurssit();
+        kirjoittaja.tyhjennaKalenteri();
+        UI.luoKalenteriNakyma();
+    }
+    
     private static void lueKurssit() {
         lukija.lueKeskenOlevatKurssit();
         lukija.lueValmiitKurssit();
@@ -63,6 +69,11 @@ public class Ohjain {
     }
     
     public static void teeKeskenErainenKurssi(KaynnissaOlevaKurssi kurssi) {
+        kk.lisaaKeskenOlevaKurssi(kurssi);
+        kirjoittaja.tallennaKeskenErainenKurssi(kurssi);
+    }
+    
+    public static void tallennaTiedostostaKeskenErainenKurssi(KaynnissaOlevaKurssi kurssi) {
         kk.lisaaKeskenOlevaKurssi(kurssi);
     }
     

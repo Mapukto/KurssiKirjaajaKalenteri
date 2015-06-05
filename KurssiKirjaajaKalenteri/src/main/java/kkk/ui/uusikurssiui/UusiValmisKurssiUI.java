@@ -46,7 +46,7 @@ public class UusiValmisKurssiUI extends JPanel {
         lomake.add(nimiLabel);
         lomake.add(nimiTFiel);
         
-        JLabel arvosanaLabel = new JLabel("Kurssista saatu arvosana:");
+        JLabel arvosanaLabel = new JLabel("Kurssista saatu arvosana kokonaislukuna taikka \"hyväksyttynä\"");
         JTextField arvosanaTFiel = new JTextField();
         lomake.add(arvosanaLabel);
         lomake.add(arvosanaTFiel);

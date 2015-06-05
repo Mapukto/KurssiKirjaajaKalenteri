@@ -123,10 +123,14 @@ public class KalenteriUI extends JPanel {
 
         JButton uusiKurssi = new JButton("Uusi kurssi");
         nappiLokero.add(uusiKurssi);
+        
+        JButton tyhjenna = new JButton("Tyhjennä kalenteri");
+        nappiLokero.add(tyhjenna);
 
-        KalenteriKuuntelija kuuntelija = new KalenteriKuuntelija(kurssinHallintaan, uusiKurssi);
+        KalenteriKuuntelija kuuntelija = new KalenteriKuuntelija(kurssinHallintaan, uusiKurssi, tyhjenna);
         kurssinHallintaan.addActionListener(kuuntelija);
         uusiKurssi.addActionListener(kuuntelija);
+        tyhjenna.addActionListener(kuuntelija);
 
         return nappiLokero;
     }

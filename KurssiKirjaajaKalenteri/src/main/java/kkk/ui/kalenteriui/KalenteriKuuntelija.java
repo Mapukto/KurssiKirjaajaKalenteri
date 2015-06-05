@@ -4,20 +4,23 @@ package kkk.ui.kalenteriui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import kkk.ohjain.Ohjain;
 import kkk.ui.UI;
 
 public class KalenteriKuuntelija implements ActionListener {
     private final JButton hallintaNappi;
     private final JButton luoUusi;
+    private final JButton tyhjenna;
     
     /**
      * 
      * @param kurssinHallintaan
      * @param luoUusi
      */
-    public KalenteriKuuntelija(JButton kurssinHallintaan, JButton luoUusi) {
+    public KalenteriKuuntelija(JButton kurssinHallintaan, JButton luoUusi, JButton tyhjenna) {
         this.hallintaNappi = kurssinHallintaan;
         this.luoUusi = luoUusi;
+        this.tyhjenna = tyhjenna;
     }
 
     /**
@@ -31,6 +34,9 @@ public class KalenteriKuuntelija implements ActionListener {
         }
         if (ae.getSource() == luoUusi) {
             UI.luoUusiKaynnissaOlevaKurssiNakyma();
+        }
+        if (ae.getSource() == tyhjenna) {
+            Ohjain.tyhjennaKalenteri();
         }
     }
     

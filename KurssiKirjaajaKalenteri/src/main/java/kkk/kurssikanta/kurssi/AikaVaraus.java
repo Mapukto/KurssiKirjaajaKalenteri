@@ -4,25 +4,37 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
+ * Tämä luokka luo rakentaa aikavarauksen, jossa hashmappii laitetaan avaimeksi
+ * päivä, jolla on arvonaan joukko varattuja tunteja. Kirjoitusasumap on
+ * samanlainen, mutta arvona on ajat String muodossa helpottamaan aikavarauksen
+ * tallennusta tiedostoon.
  *
  * @author mopo
  */
 public class AikaVaraus {
+
     private final String[] rawPvat;
     private final String[] rawAjat;
 
     private final HashMap<Integer, HashSet<Integer>> aikaMap;
+    private HashMap<Integer, HashSet<String>> kirjoitusAsuMap;
 
     public AikaVaraus(String[] pva, String[] ajat) {
         this.rawAjat = ajat;
         this.rawPvat = pva;
         aikaMap = new HashMap<>();
+        kirjoitusAsuMap = new HashMap<>();
         teePva();
+        teeKirjoitusAsu();
     }
     
+    public HashMap<Integer, HashSet<String>> getKirjoitusAsuMap() {
+        return kirjoitusAsuMap;
+    }
+
     /**
-     * luo hashmap -palasen, jossa avaimena päivä ja arvona vastaavan päivän varattuna
-     * olevat tunnit
+     * luo hashmap -palasen, jossa avaimena päivä ja arvona vastaavan päivän
+     * varattuna olevat tunnit
      */
     private void teePva() {
         for (int i = 0; i < rawPvat.length; i++) {
@@ -55,6 +67,9 @@ public class AikaVaraus {
     private void luoPva(int nro, int i) {
         aikaMap.put(nro, new HashSet<Integer>());
         laitaTunnit(nro, rawAjat[i]);
+                
+        kirjoitusAsuMap.put(nro, new HashSet<String>());
+        kirjoitusAsuMap.get(nro).add(rawAjat[i]);
     }
 
     public HashMap<Integer, HashSet<Integer>> getAikaMap() {
@@ -78,5 +93,9 @@ public class AikaVaraus {
             return false;
         }
         return aikaMap.get(pva).contains(tunti);
+    }
+
+    private void teeKirjoitusAsu() {
+
     }
 }

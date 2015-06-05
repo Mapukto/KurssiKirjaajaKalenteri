@@ -1,8 +1,10 @@
 package kkk.io;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,13 +14,24 @@ import java.util.Set;
 import kkk.kurssikanta.kurssi.AikaVaraus;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.kurssikanta.kurssi.ValmisKurssi;
+import kkk.ui.UI;
 
 public class Kirjoittaja {
 
     private BufferedWriter valmiitWriter;
     private BufferedWriter keskenWriter;
-    private Scanner sc;
 
+    public void tyhjennaKalenteri() {
+        try {
+            luoKeskenWriter(false);
+            
+            keskenWriter.write("");
+            keskenWriter.close();
+        } catch (Exception e) {
+            UI.virheDialog("Kirjoittajan luonti epäonnistunut!");
+        }
+    }
+    
     /**
      * tallennetaan valmis kurssi tiedostoon
      *
@@ -34,7 +47,7 @@ public class Kirjoittaja {
             valmiitWriter.newLine();
             valmiitWriter.close();
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            UI.virheDialog("Kirjoittajan luonti epäonnistunut!");
         }
     }
 
@@ -60,7 +73,7 @@ public class Kirjoittaja {
             keskenWriter.newLine();
             keskenWriter.close();
         } catch (Exception e) {
-            System.out.println("kesken eräisen kurrsin kirjoitus kusee");
+            UI.virheDialog("Kirjoittajan luonti epäonnistunut");
         }
     }
 
@@ -78,10 +91,10 @@ public class Kirjoittaja {
     private String teeAjatKirjoitusAsu(KaynnissaOlevaKurssi kurssi) {
         StringBuilder kirjoitusAsu = new StringBuilder();
         AikaVaraus ajat = kurssi.getAikaVaraukset();
-        HashMap<Integer, HashSet<Integer>> aikaMap = ajat.getAikaMap();
+        HashMap<Integer, HashSet<String>> aikaMap = ajat.getKirjoitusAsuMap();
 
         kirjoitusAsu.append(kurssi.getNimi()).append("/");
-        kirjoitusAsu.append(kurssi.getNickName()).append("/");
+        kirjoitusAsu.append(kurssi.getNickName());
 
         for (int i = 1; i < 6; i++) {
             if (!aikaMap.containsKey(i)) {
@@ -100,32 +113,46 @@ public class Kirjoittaja {
      * ei toimi
      *
      * @param index
+     * @throws java.io.IOException
      */
     public void poistaKurssi(int index) {
         try {
             luoValmiitWriter(false);
-            luoScanner("src/main/java/kkk/io/valmiit.txt");
-
-            for (int i = 0; i < index; i++) {
-                String oneLine = sc.nextLine();
-                valmiitWriter.write(oneLine);
-                valmiitWriter.newLine();
-            }
-
-            valmiitWriter.write("");
-            valmiitWriter.close();
+            suoritaPoisto(index);
         } catch (Exception e) {
-            System.out.println("kurssin poisto ei toimi");
+            UI.virheDialog("Lukijan luonti epäonnistunut.");
         }
     }
-
-    private void luoScanner(String file) throws FileNotFoundException {
-        Scanner sc = new Scanner(new File(file));
+    
+    private void suoritaPoisto(int index) throws IOException {
+        File tmp = File.createTempFile("tmp", "");
+        
+        luoValmiitWriter(true);
+        BufferedReader br = new BufferedReader(new FileReader(tmp));
+        
+        for (int i = 0; i < index; i++) {
+            valmiitWriter.write(br.readLine());
+            valmiitWriter.newLine();
+        }
+        
+        //skippaa poistettavan rivin
+        br.readLine();
+        
+        String newLine;
+        
+        while (null != (newLine = br.readLine())) {
+            valmiitWriter.write(newLine);
+            valmiitWriter.newLine();
+        }
+        
+        valmiitWriter.close();
+        br.close();
+        
+        File oldFile = new File("src/main/java/kkk/io/kaynnissaOlevat.txt");
+        
+        if (oldFile.delete()) {
+            tmp.renameTo(oldFile);
+        }
     }
 }
 
-    /*
-penis/5/5/penis
-kissa/5/5/kissa
-pilu/5/5/pilu
-    */

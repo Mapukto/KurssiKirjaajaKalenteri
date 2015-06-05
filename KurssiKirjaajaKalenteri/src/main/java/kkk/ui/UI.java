@@ -100,6 +100,10 @@ public class UI implements Runnable {
         frame.pack();
     }
     
+    public static void virheDialog(String virheTeksti) {
+        JOptionPane.showMessageDialog(frame, virheTeksti, "Achtung! Virhe! Error! Apua!", JOptionPane.ERROR_MESSAGE);
+    }
+    
     private static void muutaNakyma(JPanel panel) {
         
     }
