@@ -8,5 +8,10 @@
 - 19.5 4h testit ja logiikka
 - 20.5 5h ui, testit ja logiikka
 - 21.5 4h ui ja logiikka
+- 25.5 5h
+- 27.5 4h
+- 31.5 3h
+- 2.6 4h
+- 3.6 3h
 
-## yht. 30 h
+## yht. 49 h
