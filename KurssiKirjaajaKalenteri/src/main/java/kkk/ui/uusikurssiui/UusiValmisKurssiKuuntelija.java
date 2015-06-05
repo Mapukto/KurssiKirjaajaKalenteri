@@ -38,9 +38,12 @@ class UusiValmisKurssiKuuntelija implements ActionListener {
                 luoUusiValmisKurssi();
                 UI.luoKurssiNakyma();
             } catch (Exception e) {
-                UI.virheDialog("Kurssin tiedot virheellisiä. Kurssia ei tallennettu \n" + e.getMessage());
+                if (e instanceof NumberFormatException) {
+                    UI.virheDialog("Noppamäärä ei saa olla tekstiä!");
+                } else {
+                    UI.virheDialog("Kurssin tiedot virheellisiä. Kurssia ei tallennettu!");
+                }
             }
-            
             tyhjennaSyote();
         }
         
@@ -70,5 +73,4 @@ class UusiValmisKurssiKuuntelija implements ActionListener {
         if (aikaField.getText().equals("")) throw new Exception("Kurssin suoritusaikaa ei ole syötetty");
         if (arvosanaField.getText().equals("")) throw new Exception("Arvosanaa ei ole syötetty");
     }
-    
 }

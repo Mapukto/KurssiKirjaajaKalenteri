@@ -110,29 +110,34 @@ public class Kirjoittaja {
     }
 
     /**
-     * ei toimi
+     * 
      *
      * @param index
-     * @throws java.io.IOException
      */
     public void poistaKurssi(int index) {
         try {
-            luoValmiitWriter(false);
             suoritaPoisto(index);
         } catch (Exception e) {
-            UI.virheDialog("Lukijan luonti epäonnistunut.");
+            UI.virheDialog("Kurssin poisto epäonnistui!");
         }
     }
     
+    /**
+     * poistetaan tiedostosta @param index:säs rivi. Luodaan tmp file, johon 
+     * kirjoitetaan hulutut tiedot, poistetaan vanha tiedosto ja uudelleen nimetään
+     * tmp file vanhan tiedoston nimiseksi.
+     * @param index kertoo monesko rivi poistetaan
+     * @throws IOException 
+     */
     private void suoritaPoisto(int index) throws IOException {
-        File tmp = File.createTempFile("tmp", "");
+        File tmp = new File("src/main/java/kkk/io/tmp.txt");
         
-        luoValmiitWriter(true);
-        BufferedReader br = new BufferedReader(new FileReader(tmp));
+        BufferedReader br = new BufferedReader(new FileReader("src/main/java/kkk/io/valmiit.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(tmp));
         
         for (int i = 0; i < index; i++) {
-            valmiitWriter.write(br.readLine());
-            valmiitWriter.newLine();
+            bw.write(br.readLine());
+            bw.newLine();
         }
         
         //skippaa poistettavan rivin
@@ -141,14 +146,14 @@ public class Kirjoittaja {
         String newLine;
         
         while (null != (newLine = br.readLine())) {
-            valmiitWriter.write(newLine);
-            valmiitWriter.newLine();
+            bw.write(newLine);
+            bw.newLine();
         }
         
-        valmiitWriter.close();
+        bw.close();
         br.close();
         
-        File oldFile = new File("src/main/java/kkk/io/kaynnissaOlevat.txt");
+        File oldFile = new File("src/main/java/kkk/io/valmiit.txt");
         
         if (oldFile.delete()) {
             tmp.renameTo(oldFile);
@@ -156,3 +161,8 @@ public class Kirjoittaja {
     }
 }
 
+/*
+pen/5/5/pen
+den/5/5/den
+men/5/5/men
+*/

@@ -16,6 +16,7 @@ public class KalenteriKuuntelija implements ActionListener {
      * 
      * @param kurssinHallintaan
      * @param luoUusi
+     * @param tyhjenna
      */
     public KalenteriKuuntelija(JButton kurssinHallintaan, JButton luoUusi, JButton tyhjenna) {
         this.hallintaNappi = kurssinHallintaan;

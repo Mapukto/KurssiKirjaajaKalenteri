@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 import kkk.ui.kalenteriui.KalenteriUI;
 import kkk.ui.listaui.KurssitUI;
+import kkk.ui.statistiikkaui.StatistiikkaUI;
 import kkk.ui.uusikurssiui.UusiKaynnissaOlevaKurssiUI;
 import kkk.ui.uusikurssiui.UusiValmisKurssiUI;
 
@@ -83,6 +84,18 @@ public class UI implements Runnable {
         c.repaint();
         
         c.add(uusiKurssi);
+        
+        c.validate();
+        frame.pack();
+    }
+    
+    public static void luoStatistiikkaNakyma() {
+        StatistiikkaUI uusiUI = new StatistiikkaUI();
+        
+        c.removeAll();
+        c.repaint();
+        
+        c.add(uusiUI);
         
         c.validate();
         frame.pack();

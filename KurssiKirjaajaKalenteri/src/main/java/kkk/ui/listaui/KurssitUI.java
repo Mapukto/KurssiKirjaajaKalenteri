@@ -14,7 +14,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
 import kkk.kurssikanta.kurssi.Kurssi;
 import kkk.ohjain.Ohjain;
 

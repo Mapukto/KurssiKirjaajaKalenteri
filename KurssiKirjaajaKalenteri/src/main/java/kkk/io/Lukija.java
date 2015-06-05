@@ -9,6 +9,7 @@ import kkk.kurssikanta.kurssi.AikaVaraus;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.kurssikanta.kurssi.ValmisKurssi;
 import kkk.ohjain.Ohjain;
+import kkk.ui.UI;
 
 public class Lukija {
     private Scanner keskenOlevaSc;
@@ -18,7 +19,7 @@ public class Lukija {
         try {
             keskenOlevaSc = new Scanner(new File("src/main/java/kkk/io/kaynnissaOlevat.txt"));
         } catch (FileNotFoundException ex) {
-            System.out.println("kesken olevien luku kusee");
+            UI.virheDialog(ex.getLocalizedMessage());
         }
         
         while (keskenOlevaSc.hasNextLine()) {
@@ -58,7 +59,7 @@ public class Lukija {
         try {
             valmiitSc = new Scanner(new File("src/main/java/kkk/io/valmiit.txt"));
         } catch (Exception e) {
-            System.out.println("valmiiden luku kusee");
+            UI.virheDialog(e.getLocalizedMessage());
         }
         
         while (valmiitSc.hasNextLine()) {

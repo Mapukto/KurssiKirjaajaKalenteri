@@ -43,6 +43,10 @@ public class KurssilistaKuuntelija implements ActionListener {
         if (ae.getSource() == uusi) {
             UI.luoUusiValmisKurssiNakyma();
         }
+        
+        if (ae.getSource() == statistiikka) {
+            UI.luoStatistiikkaNakyma();
+        }
     }
 
     private void poistaValittuKurssiListalta() {

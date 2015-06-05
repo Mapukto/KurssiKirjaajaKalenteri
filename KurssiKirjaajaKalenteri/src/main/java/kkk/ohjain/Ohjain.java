@@ -1,17 +1,12 @@
 
 package kkk.ohjain;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import kkk.io.Kirjoittaja;
 import kkk.io.Lukija;
 import kkk.kurssikanta.KurssiKanta;
-import kkk.kurssikanta.kurssi.AikaVaraus;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.kurssikanta.kurssi.ValmisKurssi;
-import kkk.laskin.Laskin;
 import kkk.ui.UI;
 
 
@@ -21,7 +16,6 @@ import kkk.ui.UI;
  */
 public class Ohjain {
     static KurssiKanta kk;
-    static Laskin laskin;
     static Kirjoittaja kirjoittaja;
     static Lukija lukija;
     
@@ -33,7 +27,6 @@ public class Ohjain {
         kirjoittaja = new Kirjoittaja();
         lukija = new Lukija();
         kk = new KurssiKanta();
-        laskin = new Laskin();
         
 //        String[] pva = {"maanantai", "tiistai", "keskiviikko", "perjantai"};
 //        String[] ajat = {"9-10", "12-14", "14-16", "17-18"};
