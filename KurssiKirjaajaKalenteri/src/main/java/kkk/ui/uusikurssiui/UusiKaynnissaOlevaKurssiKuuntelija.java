@@ -13,7 +13,9 @@ import kkk.ohjain.Ohjain;
 import kkk.ui.UI;
 
 /**
- *
+ * Luokka kuuntelee UusiKaynnissaOlevaKurssiUI:ta. Luokka tarkastaa käyttäjän
+ * syöttämän tiedon oikeellisuuden ja estää uuden kurtssin luonnin, mikäli tiedot 
+ * ovat vajaavaisia
  * @author maot
  */
 public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
@@ -49,9 +51,10 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
             try {
                 tallennaAjatTauluihin();
                 aikaTF.setText("");
-                paivaValikko.setSelectedIndex(0);
+//                paivaValikko.setSelectedIndex(0);
             } catch (Exception e) {
                 UI.virheDialog(e.getMessage());
+                aikaTF.setText("");
             }
 
         }

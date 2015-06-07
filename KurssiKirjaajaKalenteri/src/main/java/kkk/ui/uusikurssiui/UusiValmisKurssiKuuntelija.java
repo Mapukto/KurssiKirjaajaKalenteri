@@ -10,7 +10,9 @@ import kkk.ohjain.Ohjain;
 import kkk.ui.UI;
 
 /**
- *
+ * Luokka kuuntelee UusiValmisKurssiUI:ta. Luokka tukee kahta nappia. Takaisin
+ * ja submit. Takaisin -nappi vie takaisin kalenterinäkymään. Submit luo uuden kurssin
+ * käyttäjän antamilla inputeilla.
  * @author mopo
  */
 class UusiValmisKurssiKuuntelija implements ActionListener {

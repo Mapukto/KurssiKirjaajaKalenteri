@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import kkk.laskin.Laskin;
 
 /**
- *
+ * 
  * @author maot
  */
 public class StatistiikkaUI extends JPanel {
@@ -38,7 +38,7 @@ public class StatistiikkaUI extends JPanel {
         }
         
         JButton takaisin = new JButton("Takaisin");
-        StatistiikkaKuutelija kuuntelija = new StatistiikkaKuutelija(takaisin);
+        StatistiikkaKuuntelija kuuntelija = new StatistiikkaKuuntelija();
         takaisin.addActionListener(kuuntelija);
 
         paneeli.add(takaisin);

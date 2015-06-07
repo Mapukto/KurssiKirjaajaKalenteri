@@ -10,7 +10,7 @@ import kkk.ohjain.Ohjain;
  * kalenteriUI. Kalenteri koostuu otsikosta, kalenteriosiosta, jossa "soluja",
  * jotka kuvaavat kutakin tuntia tiettynä päivänä ja napeista.
  *
- * @author mopo
+ * @author maot
  */
 public class KalenteriUI extends JPanel {
     

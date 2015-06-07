@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
+ * Luokka luo näkymän uuden käynnissäolevan kurssin luomiseen.
  * @author maot
  */
 public class UusiKaynnissaOlevaKurssiUI extends JPanel {
