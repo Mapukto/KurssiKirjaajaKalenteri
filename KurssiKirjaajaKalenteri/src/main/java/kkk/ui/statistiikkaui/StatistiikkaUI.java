@@ -31,11 +31,13 @@ public class StatistiikkaUI extends JPanel {
         paneeli.add(teeJLabel("Kurssien keskiarvo: " + laskin.getKa()));
         paneeli.add(teeJLabel("Kurssien painotettu keskiarvo: " + laskin.getPainotettuKa()));
         
-        if (laskin.getKa() < 2.5) {
+        double ka = laskin.getKa();
+        
+        if (ka < 2.5) {
             paneeli.add(teeJLabel("Vielä on parantamisen varaa!"));
-        } else {
+        } else if (ka >= 2.5 && ka < 4) {
             paneeli.add(teeJLabel("Hyvin menee!!"));
-        }
+        } else paneeli.add(teeJLabel("Olet jumala!!!!!!!"));
         
         JButton takaisin = new JButton("Takaisin");
         StatistiikkaKuutelija kuuntelija = new StatistiikkaKuutelija(takaisin);
