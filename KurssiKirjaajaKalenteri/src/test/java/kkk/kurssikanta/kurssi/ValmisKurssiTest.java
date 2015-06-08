@@ -5,12 +5,9 @@
  */
 package kkk.kurssikanta.kurssi;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
@@ -34,5 +31,11 @@ public class ValmisKurssiTest {
     @Test
     public void suoritusAikaToimii() {
         assertEquals("a", k.getSuoritusAika());
+    }
+    
+    @Test
+    public void toStringToimii() {
+        String tulos = String.format("%-45s %-15s %-15s %-10s", "javaLabra", "3", "5", "a");
+        assertEquals(k.toString(), tulos);
     }
 }

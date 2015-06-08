@@ -101,7 +101,7 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
             int alku = Integer.parseInt(ajat[0]);
             int loppu = Integer.parseInt(ajat[1]);
 
-            return alku > 8 && alku < 18 && loppu < 19 && loppu > 9;
+            return alku > 8 && alku < 19 && loppu < 20 && loppu > 9;
         } catch (Exception e) {
             return false;
         }

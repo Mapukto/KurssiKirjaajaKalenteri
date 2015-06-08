@@ -42,11 +42,11 @@
                 <configuration>
                     <targetClasses>
                         <param>kkk.laskin.*</param>
-                        <param>kkk.kurssikanta.kurssi.*</param>
+                        <param>kkk.kurssikanta.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>kkk.laskin.*</param>
-                        <param>kkk.kurssikanta.kurssi.*</param>
+                        <param>kkk.kurssikanta.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

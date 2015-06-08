@@ -2,6 +2,7 @@
 package kkk.ohjain;
 
 import java.util.List;
+import javax.swing.SwingUtilities;
 import kkk.io.Kirjoittaja;
 import kkk.io.Lukija;
 import kkk.kurssikanta.KurssiKanta;
@@ -14,7 +15,7 @@ import kkk.ui.UI;
  *
  * @author mopo
  */
-public class Ohjain {
+public final class Ohjain {
     static KurssiKanta kk;
     static Kirjoittaja kirjoittaja;
     static Lukija lukija;
@@ -27,18 +28,13 @@ public class Ohjain {
         kirjoittaja = new Kirjoittaja();
         lukija = new Lukija();
         kk = new KurssiKanta();
-        
-//        String[] pva = {"maanantai", "tiistai", "keskiviikko", "perjantai"};
-//        String[] ajat = {"9-10", "12-14", "14-16", "17-18"};
-//        
-//        kk.lisaaKeskenOlevaKurssi(new KaynnissaOlevaKurssi("Ohjelmistotekniikan menetelmät", "OTM", new AikaVaraus(pva, ajat)));
-        
+
         lueKurssit();
     }
     
     public void run() {
         UI ui = new UI();
-        ui.run();
+        SwingUtilities.invokeLater(ui);
     }
     
     public static void tyhjennaKalenteri() {
@@ -47,7 +43,7 @@ public class Ohjain {
         UI.luoKalenteriNakyma();
     }
     
-    private static void lueKurssit() {
+    public static void lueKurssit() {
         lukija.lueKeskenOlevatKurssit();
         lukija.lueValmiitKurssit();
     }
