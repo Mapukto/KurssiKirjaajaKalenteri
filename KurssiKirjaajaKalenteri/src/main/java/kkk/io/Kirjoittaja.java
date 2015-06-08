@@ -57,7 +57,7 @@ public class Kirjoittaja {
     }
 
     private void luoValmiitWriter(boolean append) throws IOException {
-        valmiitWriter = new BufferedWriter(new FileWriter("filet/valmiit.txt", append));
+        valmiitWriter = new BufferedWriter(new FileWriter("files/valmiit.txt", append));
     }
 
     /**
@@ -83,7 +83,7 @@ public class Kirjoittaja {
     }
 
     private void luoKeskenWriter(boolean append) throws IOException {
-        keskenWriter = new BufferedWriter(new FileWriter("filet/kaynnissaOlevat.txt", append));
+        keskenWriter = new BufferedWriter(new FileWriter("files/kaynnissaOlevat.txt", append));
     }
 
     /**
@@ -135,7 +135,7 @@ public class Kirjoittaja {
      * @throws IOException 
      */
     private void suoritaPoisto(int index) throws IOException {
-        File tmp = new File("target/filet/tmp.txt");
+        File tmp = new File("files/tmp.txt");
         
         BufferedReader br = new BufferedReader(new FileReader("files/valmiit.txt"));
         BufferedWriter bw = new BufferedWriter(new FileWriter(tmp));
