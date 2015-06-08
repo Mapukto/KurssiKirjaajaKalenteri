@@ -28,7 +28,7 @@ public class UI implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("KurssiKirjaajaKalenteri KKK");
-        frame.setPreferredSize(new Dimension(800,700));
+        frame.setPreferredSize(new Dimension(800, 700));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         c = frame.getContentPane();

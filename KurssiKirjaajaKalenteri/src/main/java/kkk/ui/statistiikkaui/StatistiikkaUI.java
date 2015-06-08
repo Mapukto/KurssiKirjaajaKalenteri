@@ -24,7 +24,7 @@ public class StatistiikkaUI extends JPanel {
     
     private JPanel teeYdin() {
         JPanel paneeli = new JPanel();
-        paneeli.setLayout(new GridLayout(10,1));
+        paneeli.setLayout(new GridLayout(10, 1));
         
         paneeli.add(teeJLabel("Kursseja yhteensä: " + laskin.getKurssitYht()));
         paneeli.add(teeJLabel("Noppia yhteensä: " + laskin.getNopat()));

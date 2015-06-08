@@ -32,11 +32,20 @@ public class Laskin {
         return laskeNopat();
     }
     
+    private boolean arvosanaOnString(String arvosana) {
+        try {
+            Integer.parseInt(arvosana);
+            return false;
+        } catch (Exception e) {
+            return true;
+        }
+    }
+    
     private int laskeKeskiarvossaKaytettavatKurssit() {
         int kurssiMaara = 0;
         
         for (ValmisKurssi k : kurssit) {
-            if (!k.getArvosana().toLowerCase().equals("hyv")) kurssiMaara++;
+            if (!arvosanaOnString(k.getArvosana())) kurssiMaara++;
         }
         
         return kurssiMaara;
@@ -46,7 +55,7 @@ public class Laskin {
         double pKa = 0;
 
         for (ValmisKurssi k : kurssit) {
-            if (k.getArvosana().toLowerCase().equals("hyv")) continue;
+            if (arvosanaOnString(k.getArvosana())) continue;
             int potti = Integer.parseInt(k.getArvosana());
             potti *= k.getNopat();
             pKa += potti;
@@ -56,7 +65,7 @@ public class Laskin {
 
         if (kaLaskettavatNopat != 0) {
             pKa /= kaLaskettavatNopat;
-            return (double) Math.round(pKa * 10)/10;
+            return (double) Math.round(pKa * 10) / 10;
         } else {
             return 0;
         }
@@ -65,7 +74,7 @@ public class Laskin {
     private int laskeKaKaytettavatNopat() {
         int nopat = 0;
         for (ValmisKurssi k : kurssit) {
-            if (k.getArvosana().toLowerCase().equals("hyv")) continue;
+            if (arvosanaOnString(k.getArvosana())) continue;
             nopat += k.getNopat();
         }
         return nopat;
@@ -83,7 +92,7 @@ public class Laskin {
         double keskiarvo = 0.0;
 
         for (ValmisKurssi k : kurssit) {
-            if (k.getArvosana().toLowerCase().equals("hyv")) continue;
+            if (arvosanaOnString(k.getArvosana())) continue;
             keskiarvo += Integer.parseInt(k.getArvosana());
         }
         
@@ -91,7 +100,7 @@ public class Laskin {
         
         if (kaKurssitYht != 0) {
             keskiarvo /= kaKurssitYht;
-            return (double) Math.round(keskiarvo*10)/10;
+            return (double) Math.round(keskiarvo * 10) / 10;
         } else {
             return 0;
         }

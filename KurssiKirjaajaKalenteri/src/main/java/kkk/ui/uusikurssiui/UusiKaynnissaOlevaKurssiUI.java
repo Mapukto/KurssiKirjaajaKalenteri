@@ -54,7 +54,7 @@ public class UusiKaynnissaOlevaKurssiUI extends JPanel {
     
     private JPanel teeInput() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(10,1));
+        panel.setLayout(new GridLayout(10, 1));
         
         JLabel nimiLabel = new JLabel("Kurssin nimi:");
         this.nimiTFiel = new JTextField();
@@ -81,7 +81,7 @@ public class UusiKaynnissaOlevaKurssiUI extends JPanel {
     
     private JPanel teeAikaVarausInput() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2,2));
+        panel.setLayout(new GridLayout(2, 2));
         
         JLabel paiva = new JLabel("Valitse päivä");
         panel.add(paiva);
