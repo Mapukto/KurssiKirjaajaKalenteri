@@ -73,14 +73,14 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
     }
 
     private void tallennaAjatTauluihin() throws Exception {
-        String[] ajat = aikaTF.getText().split("-");
+        String[] ajat = aikaTF.getText().trim().split("-");
 
         if (!tarkastaAjat(ajat)) {
             throw new Exception("Syötetyt ajat ovat virheellisiä.\nAikaa ei tallennettu\nAikojen tulee olla tuntien 9 ja 18 välillä.");
         }
 
         paivaTaulu.add((String) paivaValikko.getSelectedItem());
-        aikaTaulu.add(aikaTF.getText());
+        aikaTaulu.add(ajat[0].trim() + "-" + ajat[1].trim());
 
     }
 
@@ -91,15 +91,15 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
         tarkastaInput(nimi.getText(), lyhenneTF.getText(), paivat);
 
         AikaVaraus varaukset = new AikaVaraus(paivaTaulu.toArray(paivat), aikaTaulu.toArray(ajat));
-        KaynnissaOlevaKurssi uusiKurssi = new KaynnissaOlevaKurssi(this.nimi.getText(), this.lyhenneTF.getText(), varaukset);
+        KaynnissaOlevaKurssi uusiKurssi = new KaynnissaOlevaKurssi(this.nimi.getText().trim(), this.lyhenneTF.getText().trim(), varaukset);
 
         Ohjain.teeKeskenErainenKurssi(uusiKurssi);
     }
 
     private boolean tarkastaAjat(String[] ajat) {
         try {
-            int alku = Integer.parseInt(ajat[0]);
-            int loppu = Integer.parseInt(ajat[1]);
+            int alku = Integer.parseInt(ajat[0].trim());
+            int loppu = Integer.parseInt(ajat[1].trim());
 
             return alku > 8 && alku < 19 && loppu < 20 && loppu > 9;
         } catch (Exception e) {
