@@ -58,8 +58,6 @@ public class AikaVaraus {
                 if (!aikaMap.containsKey(5)) {
                     luoPva(5, i);
                 }
-            } else {
-                System.out.println("Ei kelpaa");
             }
         }
     }

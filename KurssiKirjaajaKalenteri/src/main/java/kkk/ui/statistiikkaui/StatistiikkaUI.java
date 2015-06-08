@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import kkk.laskin.Laskin;
 
 /**
- *
+ * 
  * @author maot
  */
 public class StatistiikkaUI extends JPanel {
@@ -24,7 +24,7 @@ public class StatistiikkaUI extends JPanel {
     
     private JPanel teeYdin() {
         JPanel paneeli = new JPanel();
-        paneeli.setLayout(new GridLayout(10,1));
+        paneeli.setLayout(new GridLayout(10, 1));
         
         paneeli.add(teeJLabel("Kursseja yhteensä: " + laskin.getKurssitYht()));
         paneeli.add(teeJLabel("Noppia yhteensä: " + laskin.getNopat()));
@@ -40,7 +40,7 @@ public class StatistiikkaUI extends JPanel {
         } else paneeli.add(teeJLabel("Olet jumala!!!!!!!"));
         
         JButton takaisin = new JButton("Takaisin");
-        StatistiikkaKuutelija kuuntelija = new StatistiikkaKuutelija(takaisin);
+        StatistiikkaKuuntelija kuuntelija = new StatistiikkaKuuntelija();
         takaisin.addActionListener(kuuntelija);
 
         paneeli.add(takaisin);

@@ -3,24 +3,29 @@ package kkk.io;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 import kkk.kurssikanta.kurssi.AikaVaraus;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.kurssikanta.kurssi.ValmisKurssi;
 import kkk.ui.UI;
 
+/**
+ * Luokka hallinnoi kurssien tallettamista tiedostoihin. 
+ * @author mopo
+ */
 public class Kirjoittaja {
 
     private BufferedWriter valmiitWriter;
     private BufferedWriter keskenWriter;
-
+    
+    /**
+     * Tyhjentää koko lukujärjestyksen. 
+     */
     public void tyhjennaKalenteri() {
         try {
             luoKeskenWriter(false);
@@ -28,7 +33,7 @@ public class Kirjoittaja {
             keskenWriter.write("");
             keskenWriter.close();
         } catch (Exception e) {
-            UI.virheDialog("Kirjoittajan luonti epäonnistunut!");
+            UI.virheDialog("Kirjoittajan luonti epÃƒÂ¤onnistunut!");
         }
     }
     
@@ -47,7 +52,7 @@ public class Kirjoittaja {
             valmiitWriter.newLine();
             valmiitWriter.close();
         } catch (IOException ex) {
-            UI.virheDialog("Kirjoittajan luonti epäonnistunut!");
+            UI.virheDialog("Kirjoittajan luonti epÃƒÂ¤onnistunut!");
         }
     }
 
@@ -56,7 +61,7 @@ public class Kirjoittaja {
     }
 
     /**
-     * kesken eräisen kurssin tallennus tiedostoon
+     * kesken erÃƒÂ¤isen kurssin tallennus tiedostoon
      *
      * @param kurssi tallennettava kurssi
      */
@@ -73,7 +78,7 @@ public class Kirjoittaja {
             keskenWriter.newLine();
             keskenWriter.close();
         } catch (Exception e) {
-            UI.virheDialog("Kirjoittajan luonti epäonnistunut");
+            UI.virheDialog("Kirjoittajan luonti epÃƒÂ¤onnistunut");
         }
     }
 
@@ -82,7 +87,7 @@ public class Kirjoittaja {
     }
 
     /**
-     * tehdään keskeneräisen kurssin kirjoitusasu muotoon Kurssin
+     * tehdÃƒÂ¤ÃƒÂ¤n keskenerÃƒÂ¤isen kurssin kirjoitusasu muotoon Kurssin
      * nimi/lyhennetty nimi/luokka huone/pva1/aika1/pva2/aika2/...../pvaN/aikaN
      *
      * @param kurssi tallennettava kurssi
@@ -117,14 +122,14 @@ public class Kirjoittaja {
     public void poistaKurssi(int index) {
         try {
             suoritaPoisto(index);
-        } catch (Exception e) {
-            UI.virheDialog("Kurssin poisto epäonnistui!");
+        } catch (IOException e) {
+            UI.virheDialog("Kurssin poisto epÃ¤onnistui!\n" + e.getMessage());
         }
     }
     
     /**
-     * poistetaan tiedostosta @param index:säs rivi. Luodaan tmp file, johon 
-     * kirjoitetaan hulutut tiedot, poistetaan vanha tiedosto ja uudelleen nimetään
+     * poistetaan tiedostosta @param index:sÃƒÂ¤s rivi. Luodaan tmp file, johon 
+     * kirjoitetaan hulutut tiedot, poistetaan vanha tiedosto ja uudelleen nimetÃƒÂ¤ÃƒÂ¤n
      * tmp file vanhan tiedoston nimiseksi.
      * @param index kertoo monesko rivi poistetaan
      * @throws IOException 
@@ -157,12 +162,6 @@ public class Kirjoittaja {
         
         if (oldFile.delete()) {
             tmp.renameTo(oldFile);
-        }
+        } 
     }
 }
-
-/*
-pen/5/5/pen
-den/5/5/den
-men/5/5/men
-*/

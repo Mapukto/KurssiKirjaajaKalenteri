@@ -18,8 +18,8 @@ import kkk.kurssikanta.kurssi.Kurssi;
 import kkk.ohjain.Ohjain;
 
 /**
- *
- * @author mopo
+ * Luo näkymän valmiiden kurssien tarkastelulle ja listaamiselle. 
+ * @author maot
  */
 public class KurssitUI extends JPanel {
     private List<Kurssi> kurssitLista;
@@ -33,11 +33,7 @@ public class KurssitUI extends JPanel {
         this.add(kurssiLista(), BorderLayout.CENTER);
         this.add(teeNappiOsio(), BorderLayout.SOUTH);
     }
-    
-    /**
-     * 
-     * @return 
-     */
+
     private JLabel teeYlaOsa() {
         //45 15 15 10  "%-" + valiMaara + "s", s
         String otsake = String.format("%-45s %-15s %-20s %-10s", "Kurssin nimi", "Arvosana", "Saadut nopat", "Suoritusaika");
@@ -54,7 +50,7 @@ public class KurssitUI extends JPanel {
         
         kurssiLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         kurssiLista.setLayoutOrientation(JList.VERTICAL);
-        kurssiLista.setVisibleRowCount(-1);
+//        kurssiLista.setVisibleRowCount(-1);
         
         JScrollPane listScroller = new JScrollPane(kurssiLista);
         listScroller.setPreferredSize(new Dimension(700, 500));

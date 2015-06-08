@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
+ * Luokka luo näkymän uuden valmiin kurrsin luontiin. Käyttäjä antaa inputin näkymään,
+ * painaa nappulaa (kuin mikael jaakonpoika), jonka jälkeen kuuntelija kokoaa tiedon
+ * ja kutsuu ohjaimen luoUusi -metodia.
  * @author mopo
  */
 public class UusiValmisKurssiUI extends JPanel {

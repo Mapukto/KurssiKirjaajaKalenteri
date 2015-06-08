@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import kkk.ohjain.Ohjain;
 import kkk.ui.UI;
 
+/**
+ * 
+ * @author mopo
+ */
 public class KalenteriKuuntelija implements ActionListener {
     private final JButton hallintaNappi;
     private final JButton luoUusi;

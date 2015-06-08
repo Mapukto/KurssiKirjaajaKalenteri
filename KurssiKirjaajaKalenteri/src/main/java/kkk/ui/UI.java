@@ -28,7 +28,7 @@ public class UI implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("KurssiKirjaajaKalenteri KKK");
-        frame.setPreferredSize(new Dimension(800,700));
+        frame.setPreferredSize(new Dimension(800, 700));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         c = frame.getContentPane();
@@ -45,20 +45,12 @@ public class UI implements Runnable {
     
     /**
      * luo kurssinÃ¤kymÃ¤n. nÃ¤kymÃ¤t luodaan omissa luokissaan, jotka sitten lisÃ¤tÃ¤Ã¤n JFramen pÃ¤Ã¤lle.
-     * Koodi on toistuvaa kaikissa nÃ¤kymÃ¤nvaihdoissa, mutten keksinyt vielÃ¤ jÃ¤rkevÃ¤mpÃ¤Ã¤
-     * tapaa hallita nÃ¤kymiÃ¤...+
      */
     public static void luoKurssiNakyma() {
         c.setLayout(new BorderLayout());
         KurssitUI kurssiUI = new KurssitUI();
         
-        c.removeAll();
-        c.repaint();
-        
-        c.add(kurssiUI);
-        
-        c.validate();
-        frame.pack();
+        muutaNakyma(kurssiUI);
     }
     
     /**
@@ -68,49 +60,26 @@ public class UI implements Runnable {
         c.setLayout(new FlowLayout());
         KalenteriUI kalenteri = new KalenteriUI();
         
-        c.removeAll();
-        c.repaint();
-        
-        c.add(kalenteri);
-        
-        c.validate();
-        frame.pack();
+        muutaNakyma(kalenteri);
     }
+    
     public static void luoUusiValmisKurssiNakyma() {
 //        c.setLayout(new BorderLayout());
         UusiValmisKurssiUI uusiKurssi = new UusiValmisKurssiUI();
         
-        c.removeAll();
-        c.repaint();
-        
-        c.add(uusiKurssi);
-        
-        c.validate();
-        frame.pack();
+        muutaNakyma(uusiKurssi);
     }
     
     public static void luoStatistiikkaNakyma() {
         StatistiikkaUI uusiUI = new StatistiikkaUI();
         
-        c.removeAll();
-        c.repaint();
-        
-        c.add(uusiUI);
-        
-        c.validate();
-        frame.pack();
+        muutaNakyma(uusiUI);
     }
     
     public static void luoUusiKaynnissaOlevaKurssiNakyma() {
         UusiKaynnissaOlevaKurssiUI uusiKurssi = new UusiKaynnissaOlevaKurssiUI();
         
-        c.removeAll();
-        c.repaint();
-        
-        c.add(uusiKurssi);
-        
-        c.validate();
-        frame.pack();
+        muutaNakyma(uusiKurssi);
     }
     
     public static void virheDialog(String virheTeksti) {
@@ -118,6 +87,12 @@ public class UI implements Runnable {
     }
     
     private static void muutaNakyma(JPanel panel) {
+        c.removeAll();
+        c.repaint();
         
+        c.add(panel);
+        
+        c.validate();
+        frame.pack();
     }
 }

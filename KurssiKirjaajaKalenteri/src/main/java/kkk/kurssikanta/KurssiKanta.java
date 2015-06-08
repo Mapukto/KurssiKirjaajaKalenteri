@@ -30,6 +30,10 @@ public final class KurssiKanta {
         return this.valmiitKurssit;
     }
     
+    public List<KaynnissaOlevaKurssi> getKaynnissaOlevatKurssit() {
+        return kaynnissaOlevatKurssit;
+    }
+    
     public KaynnissaOlevaKurssi onkoVarattu(int pva, int tunti) {
         for (KaynnissaOlevaKurssi k : kaynnissaOlevatKurssit) {
             if (k.onkoVarattu(pva, tunti)) return k;
