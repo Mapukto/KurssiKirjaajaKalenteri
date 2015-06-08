@@ -51,6 +51,9 @@ public class KurssilistaKuuntelija implements ActionListener {
 
     private void poistaValittuKurssiListalta() {
         int index = lista.getSelectedIndex();
+        
+        if (index == -1) return;
+        
         listModel.remove(index);
         
         Ohjain.poistaValmisKurssi(index);
