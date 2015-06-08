@@ -1,14 +1,10 @@
 
 package kkk.io;
 
-import com.sun.org.apache.bcel.internal.util.ClassPath;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.annotation.Resource;
 import kkk.kurssikanta.kurssi.AikaVaraus;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.kurssikanta.kurssi.ValmisKurssi;
@@ -64,7 +60,7 @@ public class Lukija {
 
     private void teeKeskenScanner() {
         try {
-            keskenOlevaSc = new Scanner(new File("src/main/java/kkk/io/kaynnissaOlevat.txt"));
+            keskenOlevaSc = new Scanner(new File("files/kaynnissaOlevat.txt"));
         } catch (FileNotFoundException ex) {
             UI.virheDialog(ex.getLocalizedMessage());
         }
@@ -101,7 +97,7 @@ public class Lukija {
 
     private void teeValmisScanner() {
         try {
-            valmiitSc = new Scanner(new File("src/main/java/kkk/io/valmiit.txt"));
+            valmiitSc = new Scanner(new File("files/valmiit.txt"));
         } catch (Exception e) {
             UI.virheDialog(e.getLocalizedMessage());
         }

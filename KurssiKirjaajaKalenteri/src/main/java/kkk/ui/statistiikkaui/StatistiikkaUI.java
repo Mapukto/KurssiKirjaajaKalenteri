@@ -1,16 +1,14 @@
 
 package kkk.ui.statistiikkaui;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import kkk.laskin.Laskin;
 
 /**
- * 
+ * Luo näkymän statistiikan tarkasteluun.
  * @author maot
  */
 public class StatistiikkaUI extends JPanel {

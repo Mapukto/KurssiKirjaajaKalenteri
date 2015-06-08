@@ -57,7 +57,7 @@ public class Kirjoittaja {
     }
 
     private void luoValmiitWriter(boolean append) throws IOException {
-        valmiitWriter = new BufferedWriter(new FileWriter("src/main/java/kkk/io/valmiit.txt", append));
+        valmiitWriter = new BufferedWriter(new FileWriter("filet/valmiit.txt", append));
     }
 
     /**
@@ -83,7 +83,7 @@ public class Kirjoittaja {
     }
 
     private void luoKeskenWriter(boolean append) throws IOException {
-        keskenWriter = new BufferedWriter(new FileWriter("src/main/java/kkk/io/kaynnissaOlevat.txt", append));
+        keskenWriter = new BufferedWriter(new FileWriter("filet/kaynnissaOlevat.txt", append));
     }
 
     /**
@@ -135,9 +135,9 @@ public class Kirjoittaja {
      * @throws IOException 
      */
     private void suoritaPoisto(int index) throws IOException {
-        File tmp = new File("src/main/java/kkk/io/tmp.txt");
+        File tmp = new File("target/filet/tmp.txt");
         
-        BufferedReader br = new BufferedReader(new FileReader("src/main/java/kkk/io/valmiit.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("files/valmiit.txt"));
         BufferedWriter bw = new BufferedWriter(new FileWriter(tmp));
         
         for (int i = 0; i < index; i++) {
@@ -158,7 +158,7 @@ public class Kirjoittaja {
         bw.close();
         br.close();
         
-        File oldFile = new File("src/main/java/kkk/io/valmiit.txt");
+        File oldFile = new File("files/valmiit.txt");
         
         if (oldFile.delete()) {
             tmp.renameTo(oldFile);
