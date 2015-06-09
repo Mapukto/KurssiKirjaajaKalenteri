@@ -2,8 +2,12 @@
 package kkk.ui.uusikurssiui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.TextArea;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -23,7 +27,7 @@ public class UusiKaynnissaOlevaKurssiUI extends JPanel {
     }
     
     private void liitaKuuntelija() {
-        this.kuuntelija = new UusiKaynnissaOlevaKurssiKuuntelija(this.nimiTFiel, this.lyhenneTF, this.aikaTF, this.paivaValikko, this.peruuta, this.valmis, this.uusiAika);
+        this.kuuntelija = new UusiKaynnissaOlevaKurssiKuuntelija(this.textArea, this.nimiTFiel, this.lyhenneTF, this.aikaTF, this.paivaValikko, this.peruuta, this.valmis, this.uusiAika);
         this.nimiTFiel.addActionListener(kuuntelija);
         this.lyhenneTF.addActionListener(kuuntelija);
         this.aikaTF.addActionListener(kuuntelija);
@@ -39,6 +43,7 @@ public class UusiKaynnissaOlevaKurssiUI extends JPanel {
         
         lomake.add(teeOtsikko(), BorderLayout.NORTH);
         lomake.add(teeInput(), BorderLayout.CENTER);
+        lomake.add(teeAikaVarausLista(), BorderLayout.SOUTH);
         
         return lomake;
     }
@@ -54,7 +59,7 @@ public class UusiKaynnissaOlevaKurssiUI extends JPanel {
     
     private JPanel teeInput() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(10, 1));
+        panel.setLayout(new GridLayout(7, 1));
         
         JLabel nimiLabel = new JLabel("Kurssin nimi:");
         this.nimiTFiel = new JTextField();
@@ -99,19 +104,6 @@ public class UusiKaynnissaOlevaKurssiUI extends JPanel {
         
         return panel;
     }
-    
-    /**
-     * ei käy, kuuntelijan lisäys??????
-     * @param nimiTFiel
-     * @return 
-     */
-//    private void teeLabelJaTField(String labelText, JPanel panel) {
-//        JLabel label = new JLabel(labelText);
-//        JTextField TField = new JTextField();
-//        
-//        panel.add(label);
-//        panel.add(TField);
-//    }
 
     private JButton uusiAika;
     private JButton peruuta;
@@ -135,5 +127,19 @@ public class UusiKaynnissaOlevaKurssiUI extends JPanel {
         return napit;
     }
     
+    TextArea textArea;
     
+    private JPanel teeAikaVarausLista() {
+        JPanel paneeli = new JPanel();
+        paneeli.setBackground(Color.WHITE);
+        
+        textArea = new TextArea();
+        textArea.setPreferredSize(new Dimension(400, 175));
+        textArea.setFont(new Font("monospaced", Font.PLAIN, 16));
+        textArea.setEditable(false);
+        
+        paneeli.add(textArea);
+        
+        return paneeli;
+    }
 }

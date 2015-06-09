@@ -1,9 +1,9 @@
 package kkk.ui.uusikurssiui;
 
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -28,8 +28,9 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
 
     private final ArrayList<String> paivaTaulu;
     private final ArrayList<String> aikaTaulu;
+    private final TextArea textArea;
 
-    UusiKaynnissaOlevaKurssiKuuntelija(JTextField nimiTFiel, JTextField lyhenneTF, JTextField aikaTF, JComboBox paivaValikko, JButton peruuta, JButton valmis, JButton uusiAika) {
+    UusiKaynnissaOlevaKurssiKuuntelija(TextArea textArea, JTextField nimiTFiel, JTextField lyhenneTF, JTextField aikaTF, JComboBox paivaValikko, JButton peruuta, JButton valmis, JButton uusiAika) {
         this.lyhenneTF = lyhenneTF;
         this.nimi = nimiTFiel;
         this.uusiAika = uusiAika;
@@ -39,6 +40,7 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
         this.paivaValikko = paivaValikko;
         this.paivaTaulu = new ArrayList<>();
         this.aikaTaulu = new ArrayList<>();
+        this.textArea = textArea;
     }
 
     @Override
@@ -51,7 +53,6 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
             try {
                 tallennaAjatTauluihin();
                 aikaTF.setText("");
-//                paivaValikko.setSelectedIndex(0);
             } catch (Exception e) {
                 UI.virheDialog(e.getMessage());
                 aikaTF.setText("");
@@ -78,10 +79,13 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
         if (!tarkastaAjat(ajat)) {
             throw new Exception("Syötetyt ajat ovat virheellisiä.\nAikaa ei tallennettu\nAikojen tulee olla tuntien 9 ja 18 välillä.");
         }
+        
+        String paiva = (String) paivaValikko.getSelectedItem();
 
-        paivaTaulu.add((String) paivaValikko.getSelectedItem());
+        paivaTaulu.add(paiva);
         aikaTaulu.add(ajat[0].trim() + "-" + ajat[1].trim());
-
+        
+        lisaaAjatNakyville(paiva, ajat);
     }
 
     private void teeUusiKaynnissaOlevaKurssi() throws Exception {
@@ -100,6 +104,11 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
         try {
             int alku = Integer.parseInt(ajat[0].trim());
             int loppu = Integer.parseInt(ajat[1].trim());
+            
+            if (alku == loppu) {
+                UI.virheDialog("Alku ja loppuajat eivät voi olla samat...");
+                return false;
+            }
 
             return alku > 8 && alku < 19 && loppu < 20 && loppu > 9;
         } catch (Exception e) {
@@ -112,5 +121,21 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
         if (lyhenne.equals("")) throw new Exception("Lyhennettä ei ole syötetty");
         if (lyhenne.length() > 10) throw new Exception("Lyhenne on liian pitkä. Keksi lyhyempi!");
         if (taulu.length == 0) throw new Exception("Aikavarauksia ei ole tehty!");
+    }
+
+    private void lisaaAjatNakyville(String paiva, String[] ajat) {
+        String eka = ajat[0].trim();
+        String toka = ajat[1].trim();
+        
+        String append = String.format("%-15s %-2s - %-2s", paiva, eka, toka);
+        
+        appendTextArea(append);
+    }
+        
+    public void appendTextArea(String append) {
+        StringBuilder text = new StringBuilder(textArea.getText());
+        text.append(append).append("\n");
+        
+        textArea.setText(text.toString());
     }
 }
