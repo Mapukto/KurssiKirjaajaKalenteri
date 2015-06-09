@@ -8,10 +8,11 @@
 - 19.5 4h testit ja logiikka
 - 20.5 5h ui, testit ja logiikka
 - 21.5 4h ui ja logiikka
-- 25.5 5h
-- 27.5 4h
-- 31.5 3h
-- 2.6 4h
-- 3.6 3h
+- 25.5 5h testit
+- 27.5 4h ui
+- 31.5 3h ui
+- 2.6 4h kirjoittaja ja lukija
+- 3.6 3h kirjoittaja ja lukija jar muutokset
+- 7.6 4h laskin korjauksia ja ui
 
-## yht. 49 h
+## yht. 60 h
