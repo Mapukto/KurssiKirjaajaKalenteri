@@ -27,24 +27,11 @@ public class Lukija {
 
             String[] palat = oneLine.split("/");
 
-            ArrayList<String> paivaLista = new ArrayList<>();
-            ArrayList<String> aikaLista = new ArrayList<>();
-
-            /**
-             * Luetaan tiedostosta kurssiin liittyvät aikavaraukset. Kurssi on
-             * tallennettu muodossa nimi/lyhenne/pva 1/aika 1/pva 2/aika
-             * 2/.../pva n/aika n
-             */
+            ArrayList<String> paivaLista = teeLista(palat, 0);
+            ArrayList<String> aikaLista = teeLista(palat, 1);
+            
             String nimi = palat[0];
             String nickName = palat[1];
-
-            for (int i = 2; i < palat.length; i++) {
-                if (i % 2 == 0) {
-                    paivaLista.add(palat[i]);
-                } else {
-                    aikaLista.add(palat[i]);
-                }
-            }
 
             String[] paivat = muutaArrayListStringTauluksi(paivaLista);
             String[] ajat = muutaArrayListStringTauluksi(aikaLista);
@@ -53,6 +40,26 @@ public class Lukija {
         }
 
         keskenOlevaSc.close();
+    }
+
+    /**
+     * Luetaan tiedostosta kurssiin liittyvät aikavaraukset. Kurssi on
+     * tallennettu muodossa nimi/lyhenne/pva 1/aika 1/pva 2/aika 2/.../pva
+     * n/aika n
+     * 
+     * jos int aika on 0, täytetään lista päivillä. Jos aika on 1, täytetään
+     * lista ajoilla.
+     */
+    private ArrayList<String> teeLista(String[] palat, int aika) {
+        ArrayList<String> lista = new ArrayList<>();
+
+        for (int i = 2; i < palat.length; i++) {
+            if (i % 2 == 0) {
+                lista.add(palat[i + aika]);
+            }
+        }
+
+        return lista;
     }
 
     private String[] muutaArrayListStringTauluksi(ArrayList<String> paivaLista) {
