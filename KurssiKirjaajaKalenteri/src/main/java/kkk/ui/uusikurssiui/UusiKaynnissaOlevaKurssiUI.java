@@ -66,7 +66,7 @@ public class UusiKaynnissaOlevaKurssiUI extends JPanel {
         panel.add(nimiLabel);
         panel.add(nimiTFiel);
         
-        JLabel luokkaLabel = new JLabel("Kurssin lyhenne:");
+        JLabel luokkaLabel = new JLabel("Kurssin lyhenne: (Max. 10 kirjainta.)");
         this.lyhenneTF = new JTextField();
         panel.add(luokkaLabel);
         panel.add(lyhenneTF);

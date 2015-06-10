@@ -42,11 +42,11 @@ class UusiValmisKurssiKuuntelija implements ActionListener {
             } catch (Exception e) {
                 if (e instanceof NumberFormatException) {
                     UI.virheDialog("Noppamäärä ei saa olla tekstiä!");
+                    noppaField.setText("");
                 } else {
-                    UI.virheDialog("Kurssin tiedot virheellisiä. Kurssia ei tallennettu!");
+                    UI.virheDialog("Kurssin tiedot virheellisiä. Kurssia ei tallennettu!\n" + e.getMessage());
                 }
             }
-            tyhjennaSyote();
         }
         
         if (ae.getSource() == back) {
@@ -66,13 +66,25 @@ class UusiValmisKurssiKuuntelija implements ActionListener {
         Ohjain.teeValmisKurssi(uusiKurssi);
     }
 
-    private void tyhjennaSyote() {
-        noppaField.setText("");
-    }
-
     private void tarkastaInput() throws Exception {
         if (nimiField.getText().equals("")) throw new Exception("Kurssin nimeä ei ole syötetty");
         if (aikaField.getText().equals("")) throw new Exception("Kurssin suoritusaikaa ei ole syötetty");
         if (arvosanaField.getText().equals("")) throw new Exception("Arvosanaa ei ole syötetty");
+        
+        if (!onkoArvosanaOk()) {
+            arvosanaField.setText("");
+            throw new Exception("Arvosana ei saa olla negatiivinen!");
+        }
+    }
+    
+    private boolean onkoArvosanaOk() {
+        try {
+            int arvosana = Integer.parseInt(arvosanaField.getText());
+            
+            if (arvosana < 0) return false; 
+        } catch (Exception e) {
+        }
+        
+        return true;
     }
 }

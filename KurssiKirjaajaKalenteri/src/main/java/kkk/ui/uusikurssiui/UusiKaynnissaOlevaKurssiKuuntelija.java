@@ -75,7 +75,7 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
 
     private void tallennaAjatTauluihin() throws Exception {
         String[] ajat = aikaTF.getText().trim().split("-");
-
+        
         if (!tarkastaAjat(ajat)) {
             throw new Exception("Syötetyt ajat ovat virheellisiä.\nAikaa ei tallennettu\nAikojen tulee olla tuntien 9 ja 18 välillä.");
         }
