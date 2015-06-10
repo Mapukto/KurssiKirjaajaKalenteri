@@ -13,7 +13,7 @@ import kkk.ohjain.Ohjain;
  * @author maot
  */
 public class KalenteriUI extends JPanel {
-    
+
     public KalenteriUI() {
         this.add(teeKalenteri());
     }
@@ -29,32 +29,32 @@ public class KalenteriUI extends JPanel {
         return kalenteri;
     }
 
+    /**
+     * Luodaan kalenteriin taulukko. Ensimmäisessä sarakkeessa ajat[aikaIndex]
+     * eli tunnit. Sarakkeissa 2-6 päivät ma - pe numeroituna 1 - 5 pvaIndexiin.
+     * onkoVarattu -metodi saa parametrikseen aikaIndex + 8, eli sillä hetkellä
+     * käsittelyssä olevan tunnin. Jos tunti on varattuna, lisätään soluun
+     * lukemaan kyseisen kurssin nimi.
+     */
     private JPanel lokerot() {
         JPanel paivaPanel = new JPanel();
         paivaPanel.setLayout(new GridLayout(0, 6));
 
         String[] viikonPvt = {"Aika", "maanantai", "tiistai", "keskiviikko", "torstai", "perjantai"};
 
-        for (int i = 0; i < 6; i++) {
-            JPanel pva = new JPanel();
-            pva.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            JLabel pvaNimi = new JLabel(viikonPvt[i]);
-            pva.add(pvaNimi);
-            paivaPanel.add(pva);
-        }
+        teePaneelit(viikonPvt, paivaPanel);
 
         String[] ajat = {"9 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19"};
-        int aikaIndex = 0;
 
+        taytaPaneelit(ajat, paivaPanel);
+
+        return paivaPanel;
+    }
+
+    private void taytaPaneelit(String[] ajat, JPanel paivaPanel) {
+        int aikaIndex = 0;
         int pvaIndex = 1;
 
-        /**
-         * Luodaan kalenteriin taulukko. Riveissä ajat[aikaIndex] eli tunnit.
-         * Sarakkeissa päivät ma - pe numeroituna 1 - 5 pvaIndexiin. onkoVarattu
-         * -metodi saa parametrikseen aikaIndex + 8, eli sillä hetkellä
-         * käsittelyssä olevan tunnin. Jos tunti on varattuna, lisätään soluun
-         * lukemaan kyseisen kurssin nimi.
-         */
         for (int i = 0; i < 60; i++) {
             JPanel lokero = new JPanel();
             lokero.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -65,9 +65,9 @@ public class KalenteriUI extends JPanel {
                 aikaIndex++;
             } else {
                 lokero.setBackground(Color.WHITE);
-                
+
                 KaynnissaOlevaKurssi varattuKurssi = onkoVarattu(pvaIndex, (aikaIndex + 8));
-                
+
                 if (varattuKurssi != null) {
                     lokero.setBackground(Color.RED);
                     onkoVarattu.setText(varattuKurssi.getNickName());
@@ -80,8 +80,16 @@ public class KalenteriUI extends JPanel {
             lokero.add(onkoVarattu);
             paivaPanel.add(lokero);
         }
+    }
 
-        return paivaPanel;
+    private void teePaneelit(String[] viikonPvt, JPanel paivaPanel) {
+        for (int i = 0; i < 6; i++) {
+            JPanel pva = new JPanel();
+            pva.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            JLabel pvaNimi = new JLabel(viikonPvt[i]);
+            pva.add(pvaNimi);
+            paivaPanel.add(pva);
+        }
     }
 
     /**
@@ -123,7 +131,7 @@ public class KalenteriUI extends JPanel {
 
         JButton uusiKurssi = new JButton("Uusi kurssi");
         nappiLokero.add(uusiKurssi);
-        
+
         JButton tyhjenna = new JButton("Tyhjennä kalenteri");
         nappiLokero.add(tyhjenna);
 
