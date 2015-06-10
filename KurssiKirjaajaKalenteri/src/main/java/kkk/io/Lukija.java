@@ -21,9 +21,7 @@ public class Lukija {
         while (keskenOlevaSc.hasNextLine()) {
             String oneLine = keskenOlevaSc.nextLine();
 
-            if (oneLine.equals("")) {
-                continue;
-            }
+            if (oneLine.equals("")) continue;
 
             String[] palat = oneLine.split("/");
 
