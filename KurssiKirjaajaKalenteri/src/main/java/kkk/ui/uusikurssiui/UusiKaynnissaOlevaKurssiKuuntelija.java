@@ -14,8 +14,9 @@ import kkk.ui.UI;
 
 /**
  * Luokka kuuntelee UusiKaynnissaOlevaKurssiUI:ta. Luokka tarkastaa käyttäjän
- * syöttämän tiedon oikeellisuuden ja estää uuden kurtssin luonnin, mikäli tiedot 
- * ovat vajaavaisia
+ * syöttämän tiedon oikeellisuuden ja estää uuden kurtssin luonnin, mikäli
+ * tiedot ovat vajaavaisia
+ *
  * @author maot
  */
 public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
@@ -75,23 +76,29 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
 
     private void tallennaAjatTauluihin() throws Exception {
         String[] ajat = aikaTF.getText().trim().split("-");
-        
+
+        String paiva = (String) paivaValikko.getSelectedItem();
+
         if (!tarkastaAjat(ajat)) {
             throw new Exception("Syötetyt ajat ovat virheellisiä.\nAikaa ei tallennettu\nAikojen tulee olla tuntien 9 ja 18 välillä.");
         }
         
-        String paiva = (String) paivaValikko.getSelectedItem();
+        KaynnissaOlevaKurssi kok;
+        if ((kok = tarkastaVaraus(paivaValikko.getSelectedIndex() + 1, ajat)) != null) {
+            UI.virheDialog("Kyseinen aika on jo varattu aika!\nJo varattu kurssi: " + kok.getNimi());
+            return;
+        }
 
         paivaTaulu.add(paiva);
         aikaTaulu.add(ajat[0].trim() + "-" + ajat[1].trim());
-        
+
         lisaaAjatNakyville(paiva, ajat);
     }
 
     private void teeUusiKaynnissaOlevaKurssi() throws Exception {
         String[] paivat = new String[paivaTaulu.size()];
         String[] ajat = new String[paivaTaulu.size()];
-        
+
         tarkastaInput(nimi.getText(), lyhenneTF.getText(), paivat);
 
         AikaVaraus varaukset = new AikaVaraus(paivaTaulu.toArray(paivat), aikaTaulu.toArray(ajat));
@@ -104,9 +111,8 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
         try {
             int alku = Integer.parseInt(ajat[0].trim());
             int loppu = Integer.parseInt(ajat[1].trim());
-            
+
             if (alku == loppu) {
-                UI.virheDialog("Alku ja loppuajat eivät voi olla samat...");
                 return false;
             }
 
@@ -117,25 +123,46 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
     }
 
     private void tarkastaInput(String nimi, String lyhenne, String[] taulu) throws Exception {
-        if (nimi.equals("")) throw new Exception("Nimeä ei ole syötetty");
-        if (lyhenne.equals("")) throw new Exception("Lyhennettä ei ole syötetty");
-        if (lyhenne.length() > 10) throw new Exception("Lyhenne on liian pitkä. Keksi lyhyempi!");
-        if (taulu.length == 0) throw new Exception("Aikavarauksia ei ole tehty!");
+        if (nimi.equals("")) {
+            throw new Exception("Nimeä ei ole syötetty");
+        }
+        if (lyhenne.equals("")) {
+            throw new Exception("Lyhennettä ei ole syötetty");
+        }
+        if (lyhenne.length() > 10) {
+            throw new Exception("Lyhenne on liian pitkä. Keksi lyhyempi!");
+        }
+        if (taulu.length == 0) {
+            throw new Exception("Aikavarauksia ei ole tehty!");
+        }
     }
 
     private void lisaaAjatNakyville(String paiva, String[] ajat) {
         String eka = ajat[0].trim();
         String toka = ajat[1].trim();
-        
+
         String append = String.format("%-15s %-2s - %-2s", paiva, eka, toka);
-        
+
         appendTextArea(append);
     }
-        
+
     public void appendTextArea(String append) {
         StringBuilder text = new StringBuilder(textArea.getText());
         text.append(append).append("\n");
-        
+
         textArea.setText(text.toString());
+    }
+
+    private KaynnissaOlevaKurssi tarkastaVaraus(int p, String[] ajat) {
+        int alku = Integer.parseInt(ajat[0].trim());
+        int loppu = Integer.parseInt(ajat[1].trim());
+        int erotus = loppu - alku;
+        
+        for (int i = alku; i < loppu; i++) {
+            KaynnissaOlevaKurssi kok;
+            if ((kok = Ohjain.onkoVarattu(p, i)) != null) return kok;
+        }
+        
+        return null;
     }
 }

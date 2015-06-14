@@ -3,12 +3,11 @@ package kkk.kurssikanta;
 import java.util.ArrayList;
 import java.util.List;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
-import kkk.kurssikanta.kurssi.Kurssi;
 import kkk.kurssikanta.kurssi.ValmisKurssi;
-import kkk.ohjain.Ohjain;
+import kkk.ui.UI;
 
 /**
- *
+ * Luokka toimii tietokantana.
  * @author mopo
  */
 public final class KurssiKanta {
@@ -38,6 +37,7 @@ public final class KurssiKanta {
         for (KaynnissaOlevaKurssi k : kaynnissaOlevatKurssit) {
             if (k.onkoVarattu(pva, tunti)) return k;
         }
+
         return null;
     }
     
