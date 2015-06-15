@@ -85,7 +85,7 @@ public class UusiKaynnissaOlevaKurssiKuuntelija implements ActionListener {
         
         KaynnissaOlevaKurssi kok;
         if ((kok = tarkastaVaraus(paivaValikko.getSelectedIndex() + 1, ajat)) != null) {
-            UI.virheDialog("Kyseinen aika on jo varattu aika!\nJo varattu kurssi: " + kok.getNimi());
+            UI.virheDialog("Kyseinen aika on jo varattu!\nJo varattu kurssi: " + kok.getNimi());
             return;
         }
 

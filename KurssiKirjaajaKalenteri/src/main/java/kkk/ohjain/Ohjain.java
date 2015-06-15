@@ -57,6 +57,10 @@ public final class Ohjain {
         return kk.getValmiitKurssit();
     }
     
+    public static List getKEKurssit() {
+        return kk.getKaynnissaOlevatKurssit();
+    }
+    
     public static void teeKeskenErainenKurssi(KaynnissaOlevaKurssi kurssi) {
         kk.lisaaKeskenOlevaKurssi(kurssi);
         kirjoittaja.tallennaKeskenErainenKurssi(kurssi);

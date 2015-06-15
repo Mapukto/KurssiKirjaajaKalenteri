@@ -35,6 +35,8 @@ class UusiValmisKurssiKuuntelija implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
+        
         if (ae.getSource() == submit) {
             try {
                 luoUusiValmisKurssi();
@@ -55,36 +57,14 @@ class UusiValmisKurssiKuuntelija implements ActionListener {
     }
 
     private void luoUusiValmisKurssi() throws NumberFormatException, Exception {
-        tarkastaInput();
-        
         String arvosana = arvosanaField.getText();
-        
         int nopat = Integer.parseInt(noppaField.getText());
+        
+        UusiValmisKurssiValidator uvkv = new UusiValmisKurssiValidator(nimiField.getText(), arvosana, nopat, aikaField.getText());
+        uvkv.tarkastaInput();
         
         ValmisKurssi uusiKurssi = new ValmisKurssi(nimiField.getText(), arvosana, nopat, aikaField.getText());
         
         Ohjain.teeValmisKurssi(uusiKurssi);
-    }
-
-    private void tarkastaInput() throws Exception {
-        if (nimiField.getText().equals("")) throw new Exception("Kurssin nimeä ei ole syötetty");
-        if (aikaField.getText().equals("")) throw new Exception("Kurssin suoritusaikaa ei ole syötetty");
-        if (arvosanaField.getText().equals("")) throw new Exception("Arvosanaa ei ole syötetty");
-        
-        if (!onkoArvosanaOk()) {
-            arvosanaField.setText("");
-            throw new Exception("Arvosana ei saa olla negatiivinen!");
-        }
-    }
-    
-    private boolean onkoArvosanaOk() {
-        try {
-            int arvosana = Integer.parseInt(arvosanaField.getText());
-            
-            if (arvosana < 0) return false; 
-        } catch (Exception e) {
-        }
-        
-        return true;
     }
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.kurssikanta.kurssi.ValmisKurssi;
-import kkk.ui.UI;
 
 /**
  * Luokka toimii tietokantana.
