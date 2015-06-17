@@ -5,8 +5,10 @@ import kkk.kurssikanta.kurssi.ValmisKurssi;
 import kkk.ohjain.Ohjain;
 
 /**
+ * Luokka toimii laskimena valmiiden kurssien datalle. Tiedot näkee
+ * statistiikkaosiosta
  *
- * @author mopo
+ * @author maot
  */
 public class Laskin {
 
@@ -15,7 +17,7 @@ public class Laskin {
     public Laskin() {
         this.kurssit = Ohjain.getKurssit();
     }
-    
+
     public int getKurssitYht() {
         return kurssit.size();
     }
@@ -31,7 +33,7 @@ public class Laskin {
     public int getNopat() {
         return laskeNopat();
     }
-    
+
     private boolean arvosanaOnString(String arvosana) {
         try {
             Integer.parseInt(arvosana);
@@ -40,27 +42,31 @@ public class Laskin {
             return true;
         }
     }
-    
+
     private int laskeKeskiarvossaKaytettavatKurssit() {
         int kurssiMaara = 0;
-        
+
         for (ValmisKurssi k : kurssit) {
-            if (!arvosanaOnString(k.getArvosana())) kurssiMaara++;
+            if (!arvosanaOnString(k.getArvosana())) {
+                kurssiMaara++;
+            }
         }
-        
+
         return kurssiMaara;
     }
-    
+
     private double laskePainotettuKa() {
         double pKa = 0;
 
         for (ValmisKurssi k : kurssit) {
-            if (arvosanaOnString(k.getArvosana())) continue;
+            if (arvosanaOnString(k.getArvosana())) {
+                continue;
+            }
             int potti = Integer.parseInt(k.getArvosana());
             potti *= k.getNopat();
             pKa += potti;
         }
-        
+
         int kaLaskettavatNopat = laskeKaKaytettavatNopat();
 
         if (kaLaskettavatNopat != 0) {
@@ -74,12 +80,14 @@ public class Laskin {
     private int laskeKaKaytettavatNopat() {
         int nopat = 0;
         for (ValmisKurssi k : kurssit) {
-            if (arvosanaOnString(k.getArvosana())) continue;
+            if (arvosanaOnString(k.getArvosana())) {
+                continue;
+            }
             nopat += k.getNopat();
         }
         return nopat;
     }
-    
+
     private int laskeNopat() {
         int nopat = 0;
         for (ValmisKurssi k : kurssit) {
@@ -92,12 +100,14 @@ public class Laskin {
         double keskiarvo = 0.0;
 
         for (ValmisKurssi k : kurssit) {
-            if (arvosanaOnString(k.getArvosana())) continue;
+            if (arvosanaOnString(k.getArvosana())) {
+                continue;
+            }
             keskiarvo += Integer.parseInt(k.getArvosana());
         }
-        
+
         int kaKurssitYht = laskeKeskiarvossaKaytettavatKurssit();
-        
+
         if (kaKurssitYht != 0) {
             keskiarvo /= kaKurssitYht;
             return (double) Math.round(keskiarvo * 10) / 10;
@@ -105,13 +115,11 @@ public class Laskin {
             return 0;
         }
     }
-    
-    
-    
-    
+
     /**
      * konstruktori testejÃ¤ varten
-     * @param paramKurssit 
+     *
+     * @param paramKurssit
      */
     public Laskin(List<ValmisKurssi> paramKurssit) {
         this.kurssit = paramKurssit;

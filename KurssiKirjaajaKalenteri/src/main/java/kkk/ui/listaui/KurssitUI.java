@@ -90,6 +90,8 @@ public class KurssitUI extends JPanel {
         nappiPanel.add(uusiKurssi);
         nappiPanel.add(poistaKurssi);
         
+        if (listanOsat.isEmpty()) poistaKurssi.setEnabled(false);
+        
         return nappiPanel;
     }
 }

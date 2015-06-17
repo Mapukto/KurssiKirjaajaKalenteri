@@ -1,34 +1,39 @@
 package kkk.ui.kalenteriui;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import kkk.kurssikanta.JaksonVaihtoController;
+import kkk.kurssikanta.kurssi.KaynnissaOlevaKurssi;
 import kkk.kurssikanta.kurssi.ValmisKurssi;
 import kkk.ohjain.Ohjain;
 import kkk.ui.UI;
-import kkk.ui.uusikurssiui.UusiValmisKurssiUI;
 import kkk.ui.uusikurssiui.UusiValmisKurssiValidator;
-
 
 //TÄMÄ LUOKKA ON PAHASTI KESKEN. TARKOITUS SIIS JAKSOA VAIHDETTAESSA, ETTÄ KURSSIT LÖYTYISI
 //TÄÄLTÄ JA VOISI TALLENTAA KÄTEVÄSTI
-
 /**
  * Luokka tekee näkymän jakson vaihtamiseen, eli aikataulutettujen kurssien
  * tallentamiseen kurssilistaan
  *
  * @author maot
  */
-public class JaksonVaihtoUI extends UusiValmisKurssiUI {
+public class JaksonVaihtoUI extends JPanel {
+
+    private final List<KaynnissaOlevaKurssi> kurssit;
 
     public JaksonVaihtoUI() {
-        this.add(teeOtsikko());
+        kurssit = Ohjain.getKEKurssit();
+
+        this.setLayout(new BorderLayout());
+
+        this.add(teeOtsikko(), BorderLayout.NORTH);
+        this.add(teeInput(), BorderLayout.CENTER);
     }
 
     private JPanel teeOtsikko() {
@@ -45,7 +50,7 @@ public class JaksonVaihtoUI extends UusiValmisKurssiUI {
         lomake.setLayout(new GridLayout(9, 1));
 
         JLabel nimiLabel = new JLabel("Kurssin nimi:");
-        JTextField nimiTFiel = new JTextField();
+        JTextField nimiTFiel = new JTextField(kurssit.get(0).getNimi());
         lomake.add(nimiLabel);
         lomake.add(nimiTFiel);
 
@@ -69,10 +74,13 @@ public class JaksonVaihtoUI extends UusiValmisKurssiUI {
         JButton hylkaa = new JButton("Hylkää");
         JButton tallenna = new JButton("Tallenna");
 
-        Kuuntelija kuuntelija = new Kuuntelija(nimiTFiel, arvosanaTFiel, noppaTFiel, aikaTFiel, hylkaa, tallenna);
+        Kuuntelija kuuntelija = new Kuuntelija(nimiTFiel, arvosanaTFiel, noppaTFiel, aikaTFiel, hylkaa, tallenna, kurssit);
 
         hylkaa.addActionListener(kuuntelija);
         tallenna.addActionListener(kuuntelija);
+
+        napit.add(hylkaa);
+        napit.add(tallenna);
 
         lomake.add(napit);
 
@@ -89,9 +97,9 @@ class Kuuntelija implements ActionListener {
     private JTextField noppaField;
     private JTextField aikaField;
     private int index;
-    private UusiValmisKurssiValidator jvc;
+    private final List<KaynnissaOlevaKurssi> kurssit;
 
-    Kuuntelija(JTextField nimiTFiel, JTextField arvosanaTFiel, JTextField noppaTFiel, JTextField aikaTFiel, JButton hylkaa, JButton tallenna) {
+    Kuuntelija(JTextField nimiTFiel, JTextField arvosanaTFiel, JTextField noppaTFiel, JTextField aikaTFiel, JButton hylkaa, JButton tallenna, List<KaynnissaOlevaKurssi> kurssit) {
         this.tallenna = tallenna;
         this.hylkaa = hylkaa;
         this.nimiField = nimiTFiel;
@@ -99,19 +107,18 @@ class Kuuntelija implements ActionListener {
         this.noppaField = noppaTFiel;
         this.aikaField = aikaTFiel;
         this.index = 0;
-//        this.jvc = new UusiValmisKurssiValidator(nimiTFiel, null, index, null)
+        this.kurssit = kurssit;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == e) {
+        if (e.getSource() == hylkaa) {
             seuraava();
         }
 
         if (e.getSource() == tallenna) {
             try {
                 luoUusiValmisKurssi();
-                UI.luoKurssiNakyma();
             } catch (Exception ex) {
                 if (ex instanceof NumberFormatException) {
                     UI.virheDialog("Noppamäärä ei saa olla tekstiä!");
@@ -120,6 +127,7 @@ class Kuuntelija implements ActionListener {
                     UI.virheDialog("Kurssin tiedot virheellisiä. Kurssia ei tallennettu!\n" + ex.getMessage());
                 }
             }
+            seuraava();
         }
     }
 
@@ -128,6 +136,7 @@ class Kuuntelija implements ActionListener {
         int nopat = Integer.parseInt(noppaField.getText());
 
         UusiValmisKurssiValidator uvkv = new UusiValmisKurssiValidator(nimiField.getText(), arvosana, nopat, aikaField.getText());
+        uvkv.tarkastaInput();
 
         ValmisKurssi uusiKurssi = new ValmisKurssi(nimiField.getText(), arvosana, nopat, aikaField.getText());
 
@@ -135,7 +144,20 @@ class Kuuntelija implements ActionListener {
     }
 
     private void seuraava() {
-        
+        if (kurssit.size() > index + 1) {
+            nimiField.setText(kurssit.get(index + 1).getNimi());
+            tyhjennaKentat();
+            index++;
+        } else {
+            Ohjain.tyhjennaKalenteri();
+            UI.luoKurssiNakyma();
+        }
+    }
+
+    private void tyhjennaKentat() {
+        this.aikaField.setText("");
+        this.arvosanaField.setText("");
+        this.noppaField.setText("");
     }
 
 }

@@ -4,7 +4,6 @@ package kkk.ui.kalenteriui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import kkk.ohjain.Ohjain;
 import kkk.ui.UI;
 
 /**
@@ -37,11 +36,14 @@ public class KalenteriKuuntelija implements ActionListener {
         if (ae.getSource() == hallintaNappi) {
             UI.luoKurssiNakyma();
         }
+        
         if (ae.getSource() == luoUusi) {
             UI.luoUusiKaynnissaOlevaKurssiNakyma();
         }
+        
         if (ae.getSource() == tyhjenna) {
-            Ohjain.tyhjennaKalenteri();
+            UI.luoJaksonVaihtoNakyma();
+//            Ohjain.tyhjennaKalenteri();
         }
     }
     

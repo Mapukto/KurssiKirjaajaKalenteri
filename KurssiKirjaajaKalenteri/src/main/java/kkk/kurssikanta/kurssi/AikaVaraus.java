@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Tämä luokka luo rakentaa aikavarauksen, jossa hashmappii laitetaan avaimeksi
+ * Tämä luokka rakentaa aikavarauksen, jossa hashmappiin laitetaan avaimeksi
  * päivä, jolla on arvonaan joukko varattuja tunteja. Kirjoitusasumap on
  * samanlainen, mutta arvona on ajat String muodossa helpottamaan aikavarauksen
  * tallennusta tiedostoon.
  *
- * @author mopo
+ * @author maot
  */
 public class AikaVaraus {
 
@@ -19,6 +19,13 @@ public class AikaVaraus {
     private final HashMap<Integer, HashSet<Integer>> aikaMap;
     private HashMap<Integer, HashSet<String>> kirjoitusAsuMap;
 
+    /**
+     * AikaVaraus saa parametriksi listan päiviä ja aikoja. pva[n] on aika[n]
+     * kuuluva päivä.
+     *
+     * @param pva lista päivistä
+     * @param ajat lista ajoista
+     */
     public AikaVaraus(String[] pva, String[] ajat) {
         this.rawAjat = ajat;
         this.rawPvat = pva;
@@ -27,7 +34,7 @@ public class AikaVaraus {
         teePva();
         teeKirjoitusAsu();
     }
-    
+
     public HashMap<Integer, HashSet<String>> getKirjoitusAsuMap() {
         return kirjoitusAsuMap;
     }
@@ -65,7 +72,7 @@ public class AikaVaraus {
     private void luoPva(int nro, int i) {
         aikaMap.put(nro, new HashSet<Integer>());
         laitaTunnit(nro, rawAjat[i]);
-                
+
         kirjoitusAsuMap.put(nro, new HashSet<String>());
         kirjoitusAsuMap.get(nro).add(rawAjat[i]);
     }
@@ -85,7 +92,14 @@ public class AikaVaraus {
             aikaMap.get(i).add(alku + j);
         }
     }
-
+    
+    /**
+     * Luokka tarkastaa onko tietty päivä tiettynä aikana varattuna.
+     * 
+     * @param pva etsittää päivä
+     * @param tunti etsittävä aika
+     * @return true jos on varattu, false jos ei ole.
+     */
     public boolean onkoVarattu(int pva, int tunti) {
         if (!aikaMap.containsKey(pva)) {
             return false;

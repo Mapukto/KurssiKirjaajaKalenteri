@@ -13,7 +13,7 @@ import kkk.ui.UI;
 
 /**
  *
- * @author mopo
+ * @author maot
  */
 public final class Ohjain {
     static KurssiKanta kk;
@@ -40,14 +40,13 @@ public final class Ohjain {
     public static void tyhjennaKalenteri() {
         kk.poistaKaikkiKeskenOlevatKurssit();
         kirjoittaja.tyhjennaKalenteri();
-        UI.luoKalenteriNakyma();
     }
     
     public static void lueKurssit() {
         lukija.lueKeskenOlevatKurssit();
         lukija.lueValmiitKurssit();
     }
-
+    
     public static void poistaValmisKurssi(int index) {
         kk.poistaValmisKurssi(index);
         kirjoittaja.poistaKurssi(index);

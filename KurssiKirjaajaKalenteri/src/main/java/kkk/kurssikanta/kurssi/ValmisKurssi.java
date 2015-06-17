@@ -3,7 +3,7 @@ package kkk.kurssikanta.kurssi;
 
 
 /**
- *
+ * ValmisKurssi on suoritettu ja arvosteltu, valmis.
  * @author mopo
  */
 public class ValmisKurssi extends Kurssi {

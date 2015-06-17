@@ -10,24 +10,36 @@ import kkk.kurssikanta.kurssi.ValmisKurssi;
 import kkk.ohjain.Ohjain;
 import kkk.ui.UI;
 
+/**
+ * Lukija luokka hoitaa tiedoston lukemisen. Ohjelman käynnistyksessä luetaan
+ * tiedostot ja ladataan ne KurssiKannan listoiksi.
+ *
+ * @author maot
+ */
 public class Lukija {
 
     private Scanner keskenOlevaSc;
     private Scanner valmiitSc;
 
+    /**
+     * Luetaan kurssit tiedostosta. Luodaan tietojen perusteella uusi kurssi
+     * KurssiKanta -olion listalle
+     */
     public void lueKeskenOlevatKurssit() {
         teeKeskenScanner();
 
         while (keskenOlevaSc.hasNextLine()) {
             String oneLine = keskenOlevaSc.nextLine();
 
-            if (oneLine.equals("")) continue;
+            if (oneLine.equals("")) {
+                continue;
+            }
 
             String[] palat = oneLine.split("/");
 
             ArrayList<String> paivaLista = teeLista(palat, 0);
             ArrayList<String> aikaLista = teeLista(palat, 1);
-            
+
             String nimi = palat[0];
             String nickName = palat[1];
 
@@ -44,7 +56,7 @@ public class Lukija {
      * Luetaan tiedostosta kurssiin liittyvät aikavaraukset. Kurssi on
      * tallennettu muodossa nimi/lyhenne/pva 1/aika 1/pva 2/aika 2/.../pva
      * n/aika n
-     * 
+     *
      * jos int aika on 0, täytetään lista päivillä. Jos aika on 1, täytetään
      * lista ajoilla.
      */

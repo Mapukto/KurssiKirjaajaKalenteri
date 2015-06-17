@@ -19,7 +19,6 @@ import kkk.ui.UI;
  * @author mopo
  */
 public class Kirjoittaja {
-
     private BufferedWriter valmiitWriter;
     private BufferedWriter keskenWriter;
     
@@ -69,9 +68,6 @@ public class Kirjoittaja {
         try {
             luoKeskenWriter(true);
 
-            /**
-             *
-             */
             String ajatKirjoitusAsussa = teeAjatKirjoitusAsu(kurssi);
 
             keskenWriter.write(ajatKirjoitusAsussa);
@@ -115,9 +111,8 @@ public class Kirjoittaja {
     }
 
     /**
-     * 
-     *
-     * @param index
+     * Poistaa annetun indexin listalta
+     * @param index poistettavan alkion indexi
      */
     public void poistaKurssi(int index) {
         try {

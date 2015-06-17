@@ -57,9 +57,5 @@ public class KurssilistaKuuntelija implements ActionListener {
         listModel.remove(index);
         
         Ohjain.poistaValmisKurssi(index);
-        
-        int koko = listModel.getSize();
-        if (koko == 0) poista.setEnabled(false);
     }
-    
 }
