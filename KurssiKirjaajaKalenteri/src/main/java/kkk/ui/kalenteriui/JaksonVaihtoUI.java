@@ -119,6 +119,7 @@ class Kuuntelija implements ActionListener {
         if (e.getSource() == tallenna) {
             try {
                 luoUusiValmisKurssi();
+                seuraava();
             } catch (Exception ex) {
                 if (ex instanceof NumberFormatException) {
                     UI.virheDialog("Noppamäärä ei saa olla tekstiä!");
@@ -127,7 +128,6 @@ class Kuuntelija implements ActionListener {
                     UI.virheDialog("Kurssin tiedot virheellisiä. Kurssia ei tallennettu!\n" + ex.getMessage());
                 }
             }
-            seuraava();
         }
     }
 
